@@ -813,7 +813,7 @@ git add -A && git commit -m "feat(core): classify() verdict with violations and 
 - Create: `packages/core/src/gating.ts`
 - Test: `packages/core/test/gating.test.ts`
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `packages/core/test/gating.test.ts`:
 
@@ -882,12 +882,12 @@ describe("gate", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run packages/core/test/gating.test.ts`
 Expected: FAIL — cannot find module `../src/gating.js`.
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 `packages/core/src/gating.ts`:
 
@@ -919,7 +919,7 @@ export function gate(verdict: Verdict, ctx: GatingContext = {}): GatingResult {
 }
 ```
 
-- [ ] **Step 4: Run tests, then export the public API**
+- [x] **Step 4: Run tests, then export the public API**
 
 Run: `npx vitest run packages/core/test/gating.test.ts`
 Expected: all pass.
@@ -938,7 +938,7 @@ Delete `packages/core/test/smoke.test.ts` (scaffold-only; superseded by real tes
 Run: `npx vitest run && npx tsc -b packages/core`
 Expected: all green.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat(core): enforce-mode gating and public API"
