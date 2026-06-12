@@ -280,7 +280,7 @@ git add -A && git commit -m "feat(core): verdict and policy domain types"
 - Create: `packages/core/src/policy.ts`
 - Test: `packages/core/test/policy.test.ts`
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `packages/core/test/policy.test.ts`:
 
@@ -350,12 +350,12 @@ describe("parsePolicy", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run packages/core/test/policy.test.ts`
 Expected: FAIL — cannot find module `../src/policy.js`.
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 `packages/core/src/policy.ts`:
 
@@ -428,12 +428,12 @@ export function parsePolicy(yamlText: string): Policy {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `npx vitest run packages/core/test/policy.test.ts`
 Expected: all 7 pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat(core): policy schema with strict validation and defaults"
