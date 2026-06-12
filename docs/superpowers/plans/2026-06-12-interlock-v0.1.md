@@ -955,7 +955,7 @@ git add -A && git commit -m "feat(core): enforce-mode gating and public API"
 - Create: `packages/cli/src/git.ts`
 - Test: `packages/cli/test/git.test.ts`
 
-- [ ] **Step 1: Package skeleton**
+- [x] **Step 1: Package skeleton**
 
 `packages/cli/package.json`:
 
@@ -991,7 +991,7 @@ git add -A && git commit -m "feat(core): enforce-mode gating and public API"
 Run: `npm install`
 Expected: workspace link resolves `@interlock-dev/core`.
 
-- [ ] **Step 2: Write the failing tests**
+- [x] **Step 2: Write the failing tests**
 
 `packages/cli/test/git.test.ts`:
 
@@ -1040,12 +1040,12 @@ describe("getAuthorInfo", () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify they fail**
+- [x] **Step 3: Run tests to verify they fail**
 
 Run: `npx vitest run packages/cli/test/git.test.ts`
 Expected: FAIL — cannot find module `../src/git.js`.
 
-- [ ] **Step 4: Implement**
+- [x] **Step 4: Implement**
 
 `packages/cli/src/git.ts`:
 
@@ -1101,7 +1101,7 @@ export function getAuthorInfo(base: string, exec: Exec = defaultExec): AuthorInf
 }
 ```
 
-- [ ] **Step 5: Run tests to verify they pass, commit**
+- [x] **Step 5: Run tests to verify they pass, commit**
 
 Run: `npx vitest run packages/cli/test/git.test.ts`
 Expected: all pass.
