@@ -1728,7 +1728,7 @@ git add -A && git commit -m "feat(cli): explain command and commander bin wiring
 - Create: `action/package.json`, `action/tsconfig.json`, `action/src/helpers.ts`
 - Test: `action/test/helpers.test.ts`
 
-- [ ] **Step 1: Package skeleton**
+- [x] **Step 1: Package skeleton**
 
 `action/package.json`:
 
@@ -1762,7 +1762,7 @@ git add -A && git commit -m "feat(cli): explain command and commander bin wiring
 
 Run: `npm install`
 
-- [ ] **Step 2: Write the failing tests**
+- [x] **Step 2: Write the failing tests**
 
 `action/test/helpers.test.ts`:
 
@@ -1854,12 +1854,12 @@ describe("withRetry", () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify they fail**
+- [x] **Step 3: Run tests to verify they fail**
 
 Run: `npx vitest run action/test/helpers.test.ts`
 Expected: FAIL — cannot find module.
 
-- [ ] **Step 4: Implement**
+- [x] **Step 4: Implement**
 
 `action/src/helpers.ts`:
 
@@ -1938,7 +1938,7 @@ export async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
 }
 ```
 
-- [ ] **Step 5: Run tests to verify they pass, commit**
+- [x] **Step 5: Run tests to verify they pass, commit**
 
 Run: `npx vitest run action/test/helpers.test.ts`
 Expected: all pass.
@@ -1955,7 +1955,7 @@ git add -A && git commit -m "feat(action): pure helpers — file mapping, traile
 - Create: `action/src/main.ts`, `action/action.yml`
 - Modify: `action/package.json` (already has build script)
 
-- [ ] **Step 1: action.yml**
+- [x] **Step 1: action.yml**
 
 `action/action.yml`:
 
@@ -1980,7 +1980,7 @@ runs:
 
 Note: `action.yml` lives in `action/`, but the published action is referenced as `interlock-dev/interlock@v1` — at launch (checklist below) a root-level `action.yml` symlink-equivalent is created by copying `action/action.yml` to the repo root with `main: "action/dist/index.js"`. Add that file at launch, not now.
 
-- [ ] **Step 2: Implement main.ts**
+- [x] **Step 2: Implement main.ts**
 
 `action/src/main.ts`:
 
@@ -2201,7 +2201,7 @@ async function run(): Promise<void> {
 run().catch((e: Error) => core.setFailed(`Interlock error: ${e.message}`));
 ```
 
-- [ ] **Step 3: Typecheck, bundle, verify the bundle is self-contained**
+- [x] **Step 3: Typecheck, bundle, verify the bundle is self-contained**
 
 Run: `npx tsc -p action && npm run build -w action`
 Expected: `action/dist/index.js` exists.
@@ -2209,7 +2209,7 @@ Expected: `action/dist/index.js` exists.
 Run: `node -e "const m=require('./action/dist/index.js')" 2>&1 | head -3`
 Expected: it executes and logs an Interlock failure about missing input/event (proves the bundle loads standalone without node_modules) — any output containing "Interlock" is success; module-not-found errors are failure.
 
-- [ ] **Step 4: Run the full suite and commit (including dist)**
+- [x] **Step 4: Run the full suite and commit (including dist)**
 
 Run: `npx vitest run && npx tsc -b packages/core packages/cli && npx tsc -p action`
 Expected: green.
