@@ -212,7 +212,7 @@ git add -A && git commit -m "chore: monorepo scaffold (workspaces, vitest, core 
 **Files:**
 - Create: `packages/core/src/types.ts`
 
-- [ ] **Step 1: Write the types (no test needed — types only)**
+- [x] **Step 1: Write the types (no test needed — types only)** *(done: 2848621, verified identical to spec)*
 
 `packages/core/src/types.ts`:
 
@@ -263,7 +263,7 @@ export interface Verdict {
 }
 ```
 
-- [ ] **Step 2: Typecheck and commit**
+- [x] **Step 2: Typecheck and commit**
 
 Run: `npx tsc -b packages/core`
 Expected: no errors.
