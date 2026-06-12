@@ -1118,7 +1118,7 @@ git add -A && git commit -m "feat(cli): git diff parsing and author info collect
 - Create: `packages/cli/src/output.ts`
 - Test: `packages/cli/test/output.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `packages/cli/test/output.test.ts`:
 
@@ -1156,12 +1156,12 @@ describe("formatVerdict", () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run packages/cli/test/output.test.ts`
 Expected: FAIL — cannot find module `../src/output.js`.
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 `packages/cli/src/output.ts`:
 
@@ -1185,7 +1185,7 @@ export function formatVerdict(verdict: Verdict): string {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes, commit**
+- [x] **Step 4: Run test to verify it passes, commit**
 
 Run: `npx vitest run packages/cli/test/output.test.ts`
 Expected: pass.
@@ -1202,7 +1202,7 @@ git add -A && git commit -m "feat(cli): human-readable verdict formatting"
 - Create: `packages/cli/src/commands/check.ts`
 - Test: `packages/cli/test/check.test.ts`
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 `packages/cli/test/check.test.ts`:
 
@@ -1283,12 +1283,12 @@ describe("runCheck", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `npx vitest run packages/cli/test/check.test.ts`
 Expected: FAIL — cannot find module.
 
-- [ ] **Step 3: Implement**
+- [x] **Step 3: Implement**
 
 `packages/cli/src/commands/check.ts`:
 
@@ -1364,7 +1364,7 @@ export function runCheck(
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass, commit**
+- [x] **Step 4: Run tests to verify they pass, commit**
 
 Run: `npx vitest run packages/cli/test/check.test.ts`
 Expected: all pass.
