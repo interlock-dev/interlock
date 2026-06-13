@@ -21,7 +21,7 @@ the repo is the CTA inside it.)*
 
 **Title:** Show HN: Interlock – a deterministic merge gate for AI coding agents
 
-**URL:** https://github.com/interlock-dev/interlock
+**URL:** https://github.com/farshadpasbani/interlock
 
 **Body:**
 

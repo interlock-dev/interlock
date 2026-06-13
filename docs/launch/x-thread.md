@@ -70,6 +70,6 @@ npx agent-interlock init
 ```
 
 Essay (the why): [link]
-Repo: github.com/interlock-dev/interlock
+Repo: github.com/farshadpasbani/interlock
 
 If you run agents: which paths would you never let one touch?

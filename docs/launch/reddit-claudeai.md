@@ -47,7 +47,7 @@ Apache-2.0, runs on your own GitHub Actions, no hosted service. **v0.2** is a Cl
 hook so the same policy blocks protected-path edits locally, before the PR even exists.
 
 - Essay (the why): [manifesto link]
-- Repo: https://github.com/interlock-dev/interlock
+- Repo: https://github.com/farshadpasbani/interlock
 
 Genuinely curious what paths you'd mark Tier 2 in your own setup — everyone's "never let an
 agent touch this" list is a little different.

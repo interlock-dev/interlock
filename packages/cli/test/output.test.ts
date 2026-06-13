@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { formatVerdict } from "../src/output.js";
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 const verdict: Verdict = {
   tier: 2,

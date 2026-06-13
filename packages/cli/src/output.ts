@@ -1,4 +1,4 @@
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 export function formatVerdict(verdict: Verdict): string {
   const lines: string[] = [];

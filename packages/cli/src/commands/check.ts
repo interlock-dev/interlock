@@ -6,7 +6,7 @@ import {
   PolicyError,
   type AuthorInfo,
   type ChangedFile,
-} from "@interlock-dev/core";
+} from "interlock-core";
 import { getAuthorInfo, getChangedFiles } from "../git.js";
 import { formatVerdict } from "../output.js";
 

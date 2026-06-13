@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPolicyYaml, runInit, WORKFLOW_SNIPPET } from "../src/commands/init.js";
-import { parsePolicy } from "@interlock-dev/core";
+import { parsePolicy } from "interlock-core";
 
 function tempRepo(dirs: string[] = []): string {
   const root = mkdtempSync(join(tmpdir(), "interlock-test-"));
@@ -38,7 +38,7 @@ describe("runInit", () => {
     expect(code).toBe(0);
     expect(existsSync(join(root, "interlock.yml"))).toBe(true);
     expect(parsePolicy(readFileSync(join(root, "interlock.yml"), "utf8")).version).toBe(1);
-    expect(out.join("\n")).toContain("interlock-dev/interlock@v1");
+    expect(out.join("\n")).toContain("farshadpasbani/interlock@v1");
   });
 
   it("refuses to overwrite without --force", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { runCheck, type CheckDeps } from "../src/commands/check.js";
-import type { AuthorInfo, ChangedFile } from "@interlock-dev/core";
+import type { AuthorInfo, ChangedFile } from "interlock-core";
 
 const POLICY = `
 version: 1

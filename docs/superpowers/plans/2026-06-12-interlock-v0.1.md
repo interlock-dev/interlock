@@ -21,7 +21,7 @@ interlock/
   vitest.config.ts                # one runner for all packages; core alias to src
   .gitignore
   packages/core/
-    package.json                  # @interlock-dev/core
+    package.json                  # interlock-core
     tsconfig.json
     src/types.ts                  # Tier, ChangedFile, AuthorInfo, Verdict, Violation
     src/policy.ts                 # zod schema, parsePolicy, PolicyError
@@ -121,7 +121,7 @@ import { fileURLToPath } from "node:url";
 export default defineConfig({
   resolve: {
     alias: {
-      "@interlock-dev/core": fileURLToPath(
+      "interlock-core": fileURLToPath(
         new URL("./packages/core/src/index.ts", import.meta.url)
       ),
     },
@@ -149,7 +149,7 @@ dist/
 
 ```json
 {
-  "name": "@interlock-dev/core",
+  "name": "interlock-core",
   "version": "0.1.0",
   "type": "module",
   "license": "Apache-2.0",
@@ -971,7 +971,7 @@ git add -A && git commit -m "feat(core): enforce-mode gating and public API"
   "engines": { "node": ">=20" },
   "scripts": { "build": "tsc -p ." },
   "dependencies": {
-    "@interlock-dev/core": "0.1.0",
+    "interlock-core": "0.1.0",
     "commander": "^12.0.0"
   }
 }
@@ -989,7 +989,7 @@ git add -A && git commit -m "feat(core): enforce-mode gating and public API"
 ```
 
 Run: `npm install`
-Expected: workspace link resolves `@interlock-dev/core`.
+Expected: workspace link resolves `interlock-core`.
 
 - [x] **Step 2: Write the failing tests**
 
@@ -1051,7 +1051,7 @@ Expected: FAIL — cannot find module `../src/git.js`.
 
 ```ts
 import { execFileSync } from "node:child_process";
-import type { AuthorInfo, ChangedFile } from "@interlock-dev/core";
+import type { AuthorInfo, ChangedFile } from "interlock-core";
 
 export type Exec = (cmd: string, args: string[]) => string;
 
@@ -1125,7 +1125,7 @@ git add -A && git commit -m "feat(cli): git diff parsing and author info collect
 ```ts
 import { describe, expect, it } from "vitest";
 import { formatVerdict } from "../src/output.js";
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 const verdict: Verdict = {
   tier: 2,
@@ -1166,7 +1166,7 @@ Expected: FAIL — cannot find module `../src/output.js`.
 `packages/cli/src/output.ts`:
 
 ```ts
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 export function formatVerdict(verdict: Verdict): string {
   const lines: string[] = [];
@@ -1209,7 +1209,7 @@ git add -A && git commit -m "feat(cli): human-readable verdict formatting"
 ```ts
 import { describe, expect, it } from "vitest";
 import { runCheck, type CheckDeps } from "../src/commands/check.js";
-import type { AuthorInfo, ChangedFile } from "@interlock-dev/core";
+import type { AuthorInfo, ChangedFile } from "interlock-core";
 
 const POLICY = `
 version: 1
@@ -1300,7 +1300,7 @@ import {
   PolicyError,
   type AuthorInfo,
   type ChangedFile,
-} from "@interlock-dev/core";
+} from "interlock-core";
 import { getAuthorInfo, getChangedFiles } from "../git.js";
 import { formatVerdict } from "../output.js";
 
@@ -1391,7 +1391,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPolicyYaml, runInit, WORKFLOW_SNIPPET } from "../src/commands/init.js";
-import { parsePolicy } from "@interlock-dev/core";
+import { parsePolicy } from "interlock-core";
 
 function tempRepo(dirs: string[] = []): string {
   const root = mkdtempSync(join(tmpdir(), "interlock-test-"));
@@ -1426,7 +1426,7 @@ describe("runInit", () => {
     expect(code).toBe(0);
     expect(existsSync(join(root, "interlock.yml"))).toBe(true);
     expect(parsePolicy(readFileSync(join(root, "interlock.yml"), "utf8")).version).toBe(1);
-    expect(out.join("\n")).toContain("interlock-dev/interlock@v1");
+    expect(out.join("\n")).toContain("farshadpasbani/interlock@v1");
   });
 
   it("refuses to overwrite without --force", () => {
@@ -1480,7 +1480,7 @@ jobs:
   interlock:
     runs-on: ubuntu-latest
     steps:
-      - uses: interlock-dev/interlock@v1
+      - uses: farshadpasbani/interlock@v1
 `;
 
 export function buildPolicyYaml(d: Detected): string {
@@ -1496,7 +1496,7 @@ export function buildPolicyYaml(d: Detected): string {
   const list = (items: string[]) =>
     items.map((i) => `    - "${i}"`).join("\n");
 
-  return `# Interlock policy — https://github.com/interlock-dev/interlock
+  return `# Interlock policy — https://github.com/farshadpasbani/interlock
 version: 1
 mode: observe            # flip to "enforce" once you trust the verdicts
 
@@ -1623,7 +1623,7 @@ Expected: FAIL — cannot find module.
 
 ```ts
 import { readFileSync } from "node:fs";
-import { parsePolicy, PolicyError, tierForPath } from "@interlock-dev/core";
+import { parsePolicy, PolicyError, tierForPath } from "interlock-core";
 
 export interface ExplainDeps {
   readPolicy: () => string;
@@ -1734,7 +1734,7 @@ git add -A && git commit -m "feat(cli): explain command and commander bin wiring
 
 ```json
 {
-  "name": "@interlock-dev/action",
+  "name": "interlock-action",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -1744,7 +1744,7 @@ git add -A && git commit -m "feat(cli): explain command and commander bin wiring
   "dependencies": {
     "@actions/core": "^1.11.0",
     "@actions/github": "^6.0.0",
-    "@interlock-dev/core": "0.1.0"
+    "interlock-core": "0.1.0"
   },
   "devDependencies": { "esbuild": "^0.24.0" }
 }
@@ -1775,7 +1775,7 @@ import {
   MARKER,
   withRetry,
 } from "../src/helpers.js";
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 describe("mapFiles", () => {
   it("maps GitHub API file entries to ChangedFile", () => {
@@ -1864,8 +1864,8 @@ Expected: FAIL — cannot find module.
 `action/src/helpers.ts`:
 
 ```ts
-import type { ChangedFile, Verdict } from "@interlock-dev/core";
-import type { GatingResult } from "@interlock-dev/core";
+import type { ChangedFile, Verdict } from "interlock-core";
+import type { GatingResult } from "interlock-core";
 
 export const MARKER = "<!-- interlock-verdict -->";
 
@@ -1962,7 +1962,7 @@ git add -A && git commit -m "feat(action): pure helpers — file mapping, traile
 ```yaml
 name: "Interlock"
 description: "Tool-neutral governance gate for AI-agent PRs: protected paths + reversibility-tiered merge rules from one interlock.yml."
-author: "interlock-dev"
+author: "farshadpasbani"
 branding:
   icon: "shield"
   color: "gray-dark"
@@ -1978,7 +1978,7 @@ runs:
   main: "dist/index.js"
 ```
 
-Note: `action.yml` lives in `action/`, but the published action is referenced as `interlock-dev/interlock@v1` — at launch (checklist below) a root-level `action.yml` symlink-equivalent is created by copying `action/action.yml` to the repo root with `main: "action/dist/index.js"`. Add that file at launch, not now.
+Note: `action.yml` lives in `action/`, but the published action is referenced as `farshadpasbani/interlock@v1` — at launch (checklist below) a root-level `action.yml` symlink-equivalent is created by copying `action/action.yml` to the repo root with `main: "action/dist/index.js"`. Add that file at launch, not now.
 
 - [x] **Step 2: Implement main.ts**
 
@@ -1994,7 +1994,7 @@ import {
   parsePolicy,
   PolicyError,
   type Policy,
-} from "@interlock-dev/core";
+} from "interlock-core";
 import {
   buildComment,
   extractTrailers,
@@ -2261,7 +2261,7 @@ jobs:
       - uses: ./action
 ```
 
-(`uses: ./action` requires checkout; the published `interlock-dev/interlock@v1` form does not. Swap at launch.)
+(`uses: ./action` requires checkout; the published `farshadpasbani/interlock@v1` form does not. Swap at launch.)
 
 - [x] **Step 3: Sanity-check our own verdict locally, commit**
 
@@ -2314,10 +2314,10 @@ git add -A && git commit -m "docs: README with the 10-minute adoption path; Apac
 
 These are deliberately outside the TDD task list; they need the GitHub org and human judgement:
 
-1. Create GitHub org `interlock-dev`, repo `interlock`; push `main`.
-2. Copy `action/action.yml` to repo root with `main: "action/dist/index.js"` so `uses: interlock-dev/interlock@v1` resolves; tag `v1` (moving major tag) + `v0.1.0`.
+1. Create GitHub org `farshadpasbani`, repo `interlock`; push `main`.
+2. Copy `action/action.yml` to repo root with `main: "action/dist/index.js"` so `uses: farshadpasbani/interlock@v1` resolves; tag `v1` (moving major tag) + `v0.1.0`.
 3. Run `/constitution-init` on the repo (solo adaptation, shadow mode) — the governed fleet builds the governor.
-4. Swap the dogfood workflow to `uses: interlock-dev/interlock@v1` (drop checkout).
+4. Swap the dogfood workflow to `uses: farshadpasbani/interlock@v1` (drop checkout).
 5. Sandbox E2E: open a docs-only PR (expect Tier 0 ✅), an agent-branch PR touching `.github/**` (expect blocked in enforce / verdict in observe), confirm sticky comment updates on push.
 6. npm publish `agent-interlock` (decide scope at publish; spec leaves it open).
 7. GitHub Marketplace listing ("Interlock" title availability checked here).

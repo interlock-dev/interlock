@@ -1,6 +1,6 @@
-import type { ChangedFile, Verdict } from "@interlock-dev/core";
-import type { GatingResult } from "@interlock-dev/core";
-import { extractTrailers } from "@interlock-dev/core";
+import type { ChangedFile, Verdict } from "interlock-core";
+import type { GatingResult } from "interlock-core";
+import { extractTrailers } from "interlock-core";
 
 export const MARKER = "<!-- interlock-verdict -->";
 

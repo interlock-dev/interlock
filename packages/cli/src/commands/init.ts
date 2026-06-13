@@ -20,7 +20,7 @@ jobs:
   interlock:
     runs-on: ubuntu-latest
     steps:
-      - uses: interlock-dev/interlock@v1
+      - uses: farshadpasbani/interlock@v1
 `;
 
 export function buildPolicyYaml(d: Detected): string {
@@ -36,7 +36,7 @@ export function buildPolicyYaml(d: Detected): string {
   const list = (items: string[]) =>
     items.map((i) => `    - "${i}"`).join("\n");
 
-  return `# Interlock policy — https://github.com/interlock-dev/interlock
+  return `# Interlock policy — https://github.com/farshadpasbani/interlock
 version: 1
 mode: observe            # flip to "enforce" once you trust the verdicts
 

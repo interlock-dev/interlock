@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
-import type { AuthorInfo, ChangedFile } from "@interlock-dev/core";
-import { extractTrailers } from "@interlock-dev/core";
+import type { AuthorInfo, ChangedFile } from "interlock-core";
+import { extractTrailers } from "interlock-core";
 
 export type Exec = (cmd: string, args: string[]) => string;
 

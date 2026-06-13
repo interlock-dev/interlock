@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-13
 **Status:** Approved (brainstorm session 2026-06-13)
-**Repo:** `interlock-dev/interlock` · package: `agent-interlock` · License: Apache-2.0
+**Repo:** `farshadpasbani/interlock` · package: `agent-interlock` · License: Apache-2.0
 **Supersedes:** the v0.4 "constitution template pack" line in
 `docs/superpowers/specs/2026-06-12-interlock-v0.1-design.md` — pulled forward.
 

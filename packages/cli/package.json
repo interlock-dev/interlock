@@ -1,15 +1,15 @@
 {
   "name": "agent-interlock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "Apache-2.0",
   "description": "Tool-neutral governance gate for AI-agent pull requests: protected paths + tiered merge rules.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/interlock-dev/interlock.git",
+    "url": "git+https://github.com/farshadpasbani/interlock.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/interlock-dev/interlock#readme",
-  "bugs": "https://github.com/interlock-dev/interlock/issues",
+  "homepage": "https://github.com/farshadpasbani/interlock#readme",
+  "bugs": "https://github.com/farshadpasbani/interlock/issues",
   "keywords": [
     "ai-agents",
     "governance",
@@ -34,7 +34,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@interlock-dev/core": "0.1.0",
+    "interlock-core": "0.1.0",
     "commander": "^12.0.0",
     "esbuild": "^0.24.0"
   }

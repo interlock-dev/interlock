@@ -10,4 +10,4 @@ jobs:
   interlock:
     runs-on: ubuntu-latest
     steps:
-      - uses: interlock-dev/interlock@v1
+      - uses: farshadpasbani/interlock@v1

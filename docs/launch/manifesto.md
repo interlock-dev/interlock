@@ -1,6 +1,6 @@
 # I gave my coding agents a constitution
 
-*The hero essay. Lives on the blog (feristal.com or equivalent), linked from every channel.
+*The hero essay. Lives on the blog (farshadpasbani.github.io/interlock or equivalent), linked from every channel.
 Lead with this; the tool is the call to action at the end.*
 
 ---
@@ -69,7 +69,7 @@ full cycle but applies "would-have-merged" labels *instead of* merging, and rest
 audit until a human has watched it be right enough times to flip it live. You prove a safety
 interlock fires correctly before you wire it to the machine — not after.
 
-The whole charter is public: **[CONSTITUTION.md](https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md)**.
+The whole charter is public: **[CONSTITUTION.md](https://github.com/farshadpasbani/interlock/blob/main/docs/agents/CONSTITUTION.md)**.
 
 ## From sermon to fuse
 
@@ -123,6 +123,6 @@ The constitution it came from is in the repo; the tool is the first organ of it 
 enforceable, and there will be more — a local pre-commit/Claude Code adapter next, so the
 same policy holds before a PR even exists.
 
-- **Tool:** https://github.com/interlock-dev/interlock
-- **The constitution:** https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md
+- **Tool:** https://github.com/farshadpasbani/interlock
+- **The constitution:** https://github.com/farshadpasbani/interlock/blob/main/docs/agents/CONSTITUTION.md
 - **Install:** `npx agent-interlock init`

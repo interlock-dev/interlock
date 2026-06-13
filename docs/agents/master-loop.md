@@ -25,7 +25,7 @@ its adapters), `.github/workflows/**`, `.github/CODEOWNERS`.
 ## Setup (first cycle of a session)
 
 1. **Confirm repo + remote.** Read the remote from `git remote get-url origin`; pass
-   `-R interlock-dev/interlock` to every `gh` call. Confirm commits will carry the intended identity
+   `-R farshadpasbani/interlock` to every `gh` call. Confirm commits will carry the intended identity
    (on a multi-account machine, a per-remote `git includeIf` is the usual way to get this right).
 2. **Authenticate.** Ensure your GitHub CLI / API access works for this repo. If the authed
    account differs from the work remote, push over SSH and let a human open/merge PRs.

@@ -9,7 +9,7 @@ platform-absorption pre-mortem. Lead with the idea; close with the install.
 
 | File | What | Where it goes |
 |---|---|---|
-| `manifesto.md` | The hero essay — "I gave my coding agents a constitution" | Blog (feristal.com or equiv). The canonical narrative; everything links here. |
+| `manifesto.md` | The hero essay — "I gave my coding agents a constitution" | Blog (farshadpasbani.github.io/interlock or equiv). The canonical narrative; everything links here. |
 | `show-hn.md` | HN: primary = submit the essay; fallback = tool-first Show HN | news.ycombinator.com |
 | `reddit-claudeai.md` | Reddit post (constitution-led, fleet-built-it hook) | r/ClaudeAI, then r/ChatGPTCoding, r/ExperiencedDevs, r/devops |
 | `x-thread.md` | 8-tweet thread | X |
@@ -28,7 +28,7 @@ platform-absorption pre-mortem. Lead with the idea; close with the install.
 4. **X thread** as the ambient/evergreen version — pin it; it keeps working after the HN
    spike fades.
 5. **Publish the constitution as a standalone companion** (optional, post-traction): a
-   dedicated `interlock-dev/constitution` repo or a polished page, so the worldview has a
+   dedicated `farshadpasbani/constitution` repo or a polished page, so the worldview has a
    home that isn't buried in the tool's `docs/agents/`. For launch, the in-repo
    `docs/agents/CONSTITUTION.md` link is enough.
 
@@ -36,7 +36,7 @@ platform-absorption pre-mortem. Lead with the idea; close with the install.
 
 - [ ] Replace `[essay link]` / `[manifesto link]` placeholders with the real blog URL.
 - [ ] Confirm the `CONSTITUTION.md` link resolves (it does today:
-      https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md ).
+      https://github.com/farshadpasbani/interlock/blob/main/docs/agents/CONSTITUTION.md ).
 - [ ] GitHub Marketplace listing is live (so "search the Marketplace" works for readers).
 - [ ] `npx agent-interlock init` smoke-tested from a clean machine one more time.
 - [ ] Decide whether to soft-launch (one channel, gather feedback, fix, then the rest) or

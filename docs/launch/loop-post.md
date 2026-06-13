@@ -22,7 +22,7 @@ be.**
 
 > Sense → correct the largest deviation → record → sleep.
 
-That inversion is the whole trick, and it's the same one the [constitution](https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md)
+That inversion is the whole trick, and it's the same one the [constitution](https://github.com/farshadpasbani/interlock/blob/main/docs/agents/CONSTITUTION.md)
 is built on: a healthy system isn't goal-seeking, it's deviation-correcting. A loop told to
 maximise throughput fills your repo with confident busywork. A loop told to defend a set of
 setpoints — `main` is green, nothing merges unreviewed, no teammate is ever blocked waiting on
@@ -98,7 +98,7 @@ real, but its agenda is always yours.
 
 ## The dials, and why they're locked
 
-All of this is tuned from one file — the [loop policy](https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md):
+All of this is tuned from one file — the [loop policy](https://github.com/farshadpasbani/interlock/blob/main/docs/agents/loop-policy.md):
 the kill switch, how many workers run at once, which paths are protected, when to replenish, how
 long before stale work is reclaimed, even which model tier handles which role (cheap workhorses
 for grunt implementation, the strongest models reserved for planning and for reviewing
@@ -120,8 +120,8 @@ a ladder you climb, not a switch you flip on faith.
 
 ## This is the part worth buying
 
-[Interlock](https://github.com/interlock-dev/interlock) — the deterministic tier-gate from the
-[first essay](https://interlock.feristal.com/) — is one organ of this system: the fuse that
+[Interlock](https://github.com/farshadpasbani/interlock) — the deterministic tier-gate from the
+[first essay](https://farshadpasbani.github.io/interlock/) — is one organ of this system: the fuse that
 makes the tiers mechanical instead of merely written. But the loop is the nervous system that
 *uses* the fuse. It's the difference between a tool you operate and an organism that operates
 itself, safely, because every dangerous degree of freedom — inventing work, editing its own
@@ -131,7 +131,7 @@ construction rather than by hoping the model behaves.
 The full controller and its dials are public, and a fleet running under them built most of the
 tool you'd install:
 
-- The brain stem: [master-loop.md](https://github.com/interlock-dev/interlock/blob/main/docs/agents/master-loop.md)
-- The dials: [loop-policy.md](https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md)
+- The brain stem: [master-loop.md](https://github.com/farshadpasbani/interlock/blob/main/docs/agents/master-loop.md)
+- The dials: [loop-policy.md](https://github.com/farshadpasbani/interlock/blob/main/docs/agents/loop-policy.md)
 - The first organ, installable today: `npx agent-interlock init`
-- Repo: [github.com/interlock-dev/interlock](https://github.com/interlock-dev/interlock)
+- Repo: [github.com/farshadpasbani/interlock](https://github.com/farshadpasbani/interlock)

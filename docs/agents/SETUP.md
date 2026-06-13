@@ -39,7 +39,7 @@ let CI run, then add it.
 `gh` must be authenticated with admin on the repo. Then:
 
 ```bash
-env -u GITHUB_TOKEN gh api -X PUT repos/interlock-dev/interlock/branches/main/protection \
+env -u GITHUB_TOKEN gh api -X PUT repos/farshadpasbani/interlock/branches/main/protection \
   --input - <<'JSON'
 {
   "required_status_checks": { "strict": true, "contexts": ["checks"] },

@@ -11,7 +11,7 @@ LLM judges your PR.
 
 This package is the CLI. The companion GitHub Action posts the verdict on every PR. Full
 docs, the Action, and the design live at
-**[github.com/interlock-dev/interlock](https://github.com/interlock-dev/interlock)**.
+**[github.com/farshadpasbani/interlock](https://github.com/farshadpasbani/interlock)**.
 
 ## One-minute setup
 

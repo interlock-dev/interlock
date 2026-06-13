@@ -1,4 +1,4 @@
-# Interlock policy — https://github.com/interlock-dev/interlock
+# Interlock policy — https://github.com/farshadpasbani/interlock
 version: 1
 mode: observe            # flip to "enforce" once you trust the verdicts
 

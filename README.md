@@ -33,7 +33,7 @@ Two steps — `init`, then paste — and you're done. Everything after is the ga
      interlock:
        runs-on: ubuntu-latest
        steps:
-         - uses: interlock-dev/interlock@v1
+         - uses: farshadpasbani/interlock@v1
    ```
 
 3. **Open any PR.** Interlock posts its first verdict as a sticky comment, applies an `interlock:tier-N` label, and writes a job summary table (file → tier → matched rule). In observe mode the job always passes — you are watching, not blocking.
@@ -60,7 +60,7 @@ A few invariants worth knowing:
 The annotated default `interlock.yml` (as written by `init` on a repo with `docs/` and `.github/workflows/`):
 
 ```yaml
-# Interlock policy — https://github.com/interlock-dev/interlock
+# Interlock policy — https://github.com/farshadpasbani/interlock
 version: 1
 mode: observe            # flip to "enforce" once you trust the verdicts
 

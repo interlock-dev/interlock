@@ -8,7 +8,7 @@ import {
   MARKER,
   withRetry,
 } from "../src/helpers.js";
-import type { Verdict } from "@interlock-dev/core";
+import type { Verdict } from "interlock-core";
 
 describe("mapFiles", () => {
   it("maps GitHub API file entries to ChangedFile", () => {

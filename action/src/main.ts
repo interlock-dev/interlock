@@ -8,7 +8,7 @@ import {
   PolicyError,
   InvalidPathError,
   type Policy,
-} from "@interlock-dev/core";
+} from "interlock-core";
 import {
   buildComment,
   decodeContentResponse,

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 export default defineConfig({
   resolve: {
     alias: {
-      "@interlock-dev/core": fileURLToPath(
+      "interlock-core": fileURLToPath(
         new URL("./packages/core/src/index.ts", import.meta.url)
       ),
     },

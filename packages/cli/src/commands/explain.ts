@@ -4,7 +4,7 @@ import {
   parsePolicy,
   PolicyError,
   tierForPath,
-} from "@interlock-dev/core";
+} from "interlock-core";
 
 export interface ExplainDeps {
   readPolicy: () => string;

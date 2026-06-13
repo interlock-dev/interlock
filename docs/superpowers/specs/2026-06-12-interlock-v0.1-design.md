@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-12
 **Status:** Approved (brainstorm session 2026-06-12)
-**Repo home:** `interlock-dev/interlock` (GitHub org to create) · npm: `agent-interlock` · License: Apache-2.0
+**Repo home:** `farshadpasbani/interlock` (GitHub org to create) · npm: `agent-interlock` · License: Apache-2.0
 
 ## What Interlock is
 
@@ -132,7 +132,7 @@ human-readable message (line/field).
   1 = blocking violation (stronger than warn), 2 = config/input error.
 - `explain <path>` — prints which rule matches the path, its tier, and why.
 
-### The GitHub Action — `action/` (`interlock-dev/interlock@v1`)
+### The GitHub Action — `action/` (`farshadpasbani/interlock@v1`)
 
 - Trigger: `pull_request` (opened, synchronize, reopened).
 - Reads changed files + author metadata from the GitHub API (no full clone needed), runs
@@ -182,7 +182,7 @@ PRs (requires `contents: write`; gated behind explicit policy setting).
 
 **Post-traction (v0.4+):** constitution template pack — an optional scaffold of the full
 agent-fleet operating manual (the founder's constitution), via `interlock init
---with-constitution` and/or a companion `interlock-dev/constitution` repo. **Published
+--with-constitution` and/or a companion `farshadpasbani/constitution` repo. **Published
 beside the product, never bundled into the core:** Interlock stays the deterministic fuse a
 stranger installs in about a minute; the constitution is the philosophy layer believers opt
 into after the gate has earned trust. The constitution also serves as the flagship launch
@@ -201,7 +201,7 @@ Bitbucket, audit exports — that is the paid team layer, gated on the adoption 
 
 ## Open questions (deferred, not blocking)
 
-- npm scope: unscoped `agent-interlock` vs scoped `@interlock-dev/cli` — decide at publish.
+- npm scope: unscoped `agent-interlock` vs scoped `agent-interlock` — decide at publish.
 - Marketplace listing name availability ("Interlock" listing title) — check at publish.
 - Whether `init` should detect existing agent bot accounts from repo PR history (nice v0.2
   touch).

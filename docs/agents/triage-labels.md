@@ -18,10 +18,10 @@ different human responses — keep them distinct (Constitution Article VI).
 Create any missing labels on first use:
 
 ```bash
-env -u GITHUB_TOKEN gh label create needs-engineer   --repo interlock-dev/interlock --color 8A2BE2 --description "Decision referred to the sovereign (decide-for-me)"
-env -u GITHUB_TOKEN gh label create would-auto-merge --repo interlock-dev/interlock --color 0E8A16 --description "Shadow: would have auto-merged; audit it"
-env -u GITHUB_TOKEN gh label create in-progress      --repo interlock-dev/interlock --color FBCA04 --description "A worker has claimed this"
-env -u GITHUB_TOKEN gh label create in-review        --repo interlock-dev/interlock --color 1D76DB --description "PR open, awaiting merge decision"
-env -u GITHUB_TOKEN gh label create blocked          --repo interlock-dev/interlock --color B60205 --description "A failure needs a human"
-env -u GITHUB_TOKEN gh label create ready-for-agent  --repo interlock-dev/interlock --color 0E8A16 --description "Specified, ready for an autonomous worker"
+env -u GITHUB_TOKEN gh label create needs-engineer   --repo farshadpasbani/interlock --color 8A2BE2 --description "Decision referred to the sovereign (decide-for-me)"
+env -u GITHUB_TOKEN gh label create would-auto-merge --repo farshadpasbani/interlock --color 0E8A16 --description "Shadow: would have auto-merged; audit it"
+env -u GITHUB_TOKEN gh label create in-progress      --repo farshadpasbani/interlock --color FBCA04 --description "A worker has claimed this"
+env -u GITHUB_TOKEN gh label create in-review        --repo farshadpasbani/interlock --color 1D76DB --description "PR open, awaiting merge decision"
+env -u GITHUB_TOKEN gh label create blocked          --repo farshadpasbani/interlock --color B60205 --description "A failure needs a human"
+env -u GITHUB_TOKEN gh label create ready-for-agent  --repo farshadpasbani/interlock --color 0E8A16 --description "Specified, ready for an autonomous worker"
 ```
