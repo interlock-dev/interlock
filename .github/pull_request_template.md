@@ -12,3 +12,4 @@
 - [ ] Any doc this change made stale is reconciled here (Art. XI)
 - [ ] No `CONTEXT.md` definition or ADR changed silently (proposed via `needs-engineer` instead)
 - [ ] If `action/` source changed: `npm run build -w action` run and `action/dist` committed
+# E2E agent probe
