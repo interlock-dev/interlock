@@ -1,0 +1,28 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npx vitest run
+      - name: Action bundle is reproducible
+        run: |
+          npm run build -w action
+          git diff --quiet -- action/dist || { echo "::error::action/dist is stale — run npm run build -w action and commit"; exit 1; }
+      - name: Action bundle runs under the Actions loader
+        run: |
+          set +e
+          out=$(node action/dist/index.cjs 2>&1); code=$?
+          set -e
+          echo "$out" | grep -q "github-token" || { echo "::error::bundle did not reach input parsing: $out"; exit 1; }
+          test "$code" -eq 1 || { echo "::error::expected exit 1 from missing input, got $code"; exit 1; }
