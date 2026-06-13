@@ -9,7 +9,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Don't orchestrate your agents. Give them a brain stem.">
 <meta property="og:description" content="The loop that runs an agent fleet — a homeostatic controller that defends setpoints and never writes its own code.">
-<meta property="og:url" content="https://interlock.feristal.com/loop/">
+<meta property="og:url" content="https://farshadpasbani.github.io/interlock/loop/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Don't orchestrate your agents. Give them a brain stem.">
 <meta name="twitter:description" content="The loop that runs an agent fleet — a homeostatic controller that defends setpoints and never writes its own code.">
@@ -93,7 +93,7 @@
 </head>
 <body>
 <article class="wrap">
-  <p class="eyebrow"><a href="/">&larr; Interlock</a> &nbsp;·&nbsp; the loop</p>
+  <p class="eyebrow"><a href="../">&larr; Interlock</a> &nbsp;·&nbsp; the loop</p>
   <h1>Don't orchestrate your agents. Give them a brain stem.</h1>
   <p class="standfirst">The manifesto made the case for governing agents. This is the engine that does the governing — and the part I'd actually sell you.</p>
   <p class="byline">Farshad Pasbani</p>
@@ -108,7 +108,7 @@
 
   <blockquote><p>Sense &rarr; correct the largest deviation &rarr; record &rarr; sleep.</p></blockquote>
 
-  <p>That inversion is the whole trick, and it's the same one the <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md">constitution</a> is built on: a healthy system isn't goal-seeking, it's deviation-correcting. A loop told to maximise throughput fills your repo with confident busywork. A loop told to defend a set of setpoints — <code>main</code> is green, nothing merges unreviewed, no teammate is ever blocked waiting on it — stays quiet when nothing's wrong and acts decisively when something is. An organism that acts when nothing is wrong isn't healthy; it's feverish.</p>
+  <p>That inversion is the whole trick, and it's the same one the <a href="https://github.com/farshadpasbani/interlock/blob/main/docs/agents/CONSTITUTION.md">constitution</a> is built on: a healthy system isn't goal-seeking, it's deviation-correcting. A loop told to maximise throughput fills your repo with confident busywork. A loop told to defend a set of setpoints — <code>main</code> is green, nothing merges unreviewed, no teammate is ever blocked waiting on it — stays quiet when nothing's wrong and acts decisively when something is. An organism that acts when nothing is wrong isn't healthy; it's feverish.</p>
 
   <p>The cycle is <strong>stateless in the agent's context and stateful in the world.</strong> Nothing is held in a conversation between runs — every fact is read back from GitHub at the top of the cycle and written back at the bottom. Lose the process, lose nothing. The repository is the memory; the agent is just the thing that reads it this minute.</p>
 
@@ -141,7 +141,7 @@
 
   <h2>The dials, and why they're locked</h2>
 
-  <p>All of this is tuned from one file — the <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md">loop policy</a>: the kill switch, how many workers run at once, which paths are protected, when to replenish, how long before stale work is reclaimed, even which model tier handles which role (cheap workhorses for grunt implementation, the strongest models reserved for planning and for reviewing protected-path changes, where being wrong is unrecoverable).</p>
+  <p>All of this is tuned from one file — the <a href="https://github.com/farshadpasbani/interlock/blob/main/docs/agents/loop-policy.md">loop policy</a>: the kill switch, how many workers run at once, which paths are protected, when to replenish, how long before stale work is reclaimed, even which model tier handles which role (cheap workhorses for grunt implementation, the strongest models reserved for planning and for reviewing protected-path changes, where being wrong is unrecoverable).</p>
 
   <p>And the policy file is itself a protected path. The loop reads its own constraints every cycle and <strong>can never edit them.</strong> It can learn — it writes tests, reconciles docs, leaves notes — but it writes those into the body, never into the law. Acquired traits aren't inherited; one noisy night never rewrites the inheritance. Changing the dials takes a human-reviewed, human-merged pull request. The organism does not get to rewrite its own DNA.</p>
 
@@ -151,21 +151,21 @@
 
   <h2>This is the part worth buying</h2>
 
-  <p><a href="https://github.com/interlock-dev/interlock">Interlock</a> — the deterministic tier-gate from the <a href="/">first essay</a> — is one organ of this system: the fuse that makes the tiers mechanical instead of merely written. But the loop is the nervous system that <em>uses</em> the fuse. It's the difference between a tool you operate and an organism that operates itself, safely, because every dangerous degree of freedom — inventing work, editing its own rules, merging what it shouldn't, running while you're trying to stop it — is closed off by construction rather than by hoping the model behaves.</p>
+  <p><a href="https://github.com/farshadpasbani/interlock">Interlock</a> — the deterministic tier-gate from the <a href="../">first essay</a> — is one organ of this system: the fuse that makes the tiers mechanical instead of merely written. But the loop is the nervous system that <em>uses</em> the fuse. It's the difference between a tool you operate and an organism that operates itself, safely, because every dangerous degree of freedom — inventing work, editing its own rules, merging what it shouldn't, running while you're trying to stop it — is closed off by construction rather than by hoping the model behaves.</p>
 
   <div class="cta">
     <h2>Read the engine</h2>
     <p>The full controller and its dials are public, and a fleet running under them built most of the tool you'd install.</p>
     <ul>
-      <li>The brain stem: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/master-loop.md">master-loop.md</a></li>
-      <li>The dials: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md">loop-policy.md</a></li>
+      <li>The brain stem: <a href="https://github.com/farshadpasbani/interlock/blob/main/docs/agents/master-loop.md">master-loop.md</a></li>
+      <li>The dials: <a href="https://github.com/farshadpasbani/interlock/blob/main/docs/agents/loop-policy.md">loop-policy.md</a></li>
       <li>The first organ, installable today: <code>npx agent-interlock init</code></li>
-      <li>Repo: <a href="https://github.com/interlock-dev/interlock">github.com/interlock-dev/interlock</a></li>
+      <li>Repo: <a href="https://github.com/farshadpasbani/interlock">github.com/farshadpasbani/interlock</a></li>
     </ul>
   </div>
 </article>
 <footer>
-  &copy; 2026 Farshad Pasbani · <a href="/">The manifesto</a> · <a href="https://github.com/interlock-dev/interlock">Interlock</a> is Apache-2.0.
+  &copy; 2026 Farshad Pasbani · <a href="../">The manifesto</a> · <a href="https://github.com/farshadpasbani/interlock">Interlock</a> is Apache-2.0.
 </footer>
 </body>
 </html>
