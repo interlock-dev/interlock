@@ -1,6 +1,6 @@
 {
   "name": "agent-interlock",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "Apache-2.0",
   "description": "Tool-neutral governance gate for AI-agent pull requests: protected paths + tiered merge rules.",
   "repository": {
