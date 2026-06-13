@@ -35,3 +35,5 @@ receive an Interlock verdict, stamping `Tier 2 / human-on-tier2` for changes to 
 
 Fill this file with additional domain orientation as the project takes shape — external systems,
 API conventions, units, numerical constants and their sources.
+
+<!-- E2E tier-0 probe -->
