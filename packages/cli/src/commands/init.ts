@@ -16,7 +16,6 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  issues: write
 jobs:
   interlock:
     runs-on: ubuntu-latest

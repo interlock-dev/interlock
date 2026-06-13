@@ -55,10 +55,13 @@ describe("runInit", () => {
 });
 
 describe("WORKFLOW_SNIPPET", () => {
-  it("requests only the permissions the README promises", () => {
+  it("requests only the permissions the action needs (least privilege)", () => {
     expect(WORKFLOW_SNIPPET).toContain("contents: read");
+    // The action reads and writes PRs (verdict comment + tier label). For a PR
+    // resource, the issues-API comment/label endpoints map to the pull-requests
+    // permission — so pull-requests: write is required and issues: write is not.
     expect(WORKFLOW_SNIPPET).toContain("pull-requests: write");
-    expect(WORKFLOW_SNIPPET).toContain("issues: write");
+    expect(WORKFLOW_SNIPPET).not.toContain("issues: write");
   });
 });
 
