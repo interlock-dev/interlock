@@ -6,7 +6,6 @@ import { scaffoldConstitution } from "./constitution.js";
 export interface Detected {
   hasDocs: boolean;
   hasTests: boolean;
-  hasWorkflows: boolean;
 }
 
 export const WORKFLOW_SNIPPET = `# .github/workflows/interlock.yml
@@ -35,7 +34,10 @@ export function buildPolicyYaml(d: Detected, withConstitution = false): string {
   if (withConstitution) {
     tier2.push(...germlinePaths());
   } else {
-    if (d.hasWorkflows) tier2.push(".github/**");
+    // Always protect .github/** — the install flow adds the Interlock
+    // workflow AFTER init, so the gate's own config must be Tier 2 from the
+    // start, or an agent PR could neuter the gate as a lenient Tier-1 change.
+    tier2.push(".github/**");
     tier2.push("interlock.yml"); // the gate cannot edit its own off-switch
   }
 
@@ -87,7 +89,6 @@ export function runInit(opts: InitOptions, io: InitIo): number {
       existsSync(join(opts.cwd, "tests")) ||
       existsSync(join(opts.cwd, "test")) ||
       existsSync(join(opts.cwd, "__tests__")),
-    hasWorkflows: existsSync(join(opts.cwd, ".github", "workflows")),
   };
   writeFileSync(target, buildPolicyYaml(detected, opts.withConstitution ?? false));
   io.log(`Wrote interlock.yml (mode: observe).`);

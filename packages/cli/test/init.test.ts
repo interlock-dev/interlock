@@ -14,7 +14,7 @@ function tempRepo(dirs: string[] = []): string {
 
 describe("buildPolicyYaml", () => {
   it("produces a valid policy that includes detected directories", () => {
-    const yamlText = buildPolicyYaml({ hasDocs: true, hasTests: true, hasWorkflows: true });
+    const yamlText = buildPolicyYaml({ hasDocs: true, hasTests: true });
     const policy = parsePolicy(yamlText); // must round-trip through our own parser
     expect(policy.tiers.tier0).toContain("docs/**");
     expect(policy.tiers.tier0).toContain("tests/**");
@@ -24,10 +24,12 @@ describe("buildPolicyYaml", () => {
 
   it("omits undetected directories but always protects itself", () => {
     const policy = parsePolicy(
-      buildPolicyYaml({ hasDocs: false, hasTests: false, hasWorkflows: false })
+      buildPolicyYaml({ hasDocs: false, hasTests: false })
     );
     expect(policy.tiers.tier0).not.toContain("docs/**");
     expect(policy.tiers.tier2).toContain("interlock.yml");
+    // no workflows yet, but .github/** must still be Tier 2 — see buildPolicyYaml
+    expect(policy.tiers.tier2).toContain(".github/**");
   });
 });
 
@@ -62,11 +64,11 @@ describe("WORKFLOW_SNIPPET", () => {
 
 describe("buildPolicyYaml with germline (constitution mode)", () => {
   it("renders tier2 from germlinePaths when asked", () => {
-    const yaml = buildPolicyYaml({ hasDocs: true, hasTests: true, hasWorkflows: true }, true);
+    const yaml = buildPolicyYaml({ hasDocs: true, hasTests: true }, true);
     for (const g of germlinePaths()) expect(yaml).toContain(`"${g}"`);
   });
   it("default (no germline) keeps the lean tier2", () => {
-    const yaml = buildPolicyYaml({ hasDocs: false, hasTests: false, hasWorkflows: false }, false);
+    const yaml = buildPolicyYaml({ hasDocs: false, hasTests: false }, false);
     expect(yaml).toContain('"interlock.yml"');
     expect(yaml).not.toContain('"docs/agents/**"');
   });
