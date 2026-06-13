@@ -92,8 +92,8 @@ whether a content trigger fired, **escalate to Tier 2** — default to the sover
 
 Every brief stands alone (no "see the conversation above"):
 - The issue number, its acceptance criteria, the files in scope.
-- "Work in an isolated worktree under `.worktrees/`. Use `uv` for everything: `{{INSTALL_CMD}}`,
-  `{{TEST_CMD}}`, `{{LINT_CMD}}`, `{{TYPECHECK_CMD}}`."
+- "Work in an isolated worktree under `.worktrees/`. Stack commands: `{{INSTALL_CMD}}` to install,
+  `{{TEST_CMD}}` to test, `{{LINT_CMD}}` to lint, `{{TYPECHECK_CMD}}` to typecheck."
 - Sibling-surface exclusions (files owned by other live workers).
 - "TDD: failing test first, prove it red, then implement. Leave a regression test (Article V)."
 - "Consolidate into the soma (Article XI): reconcile any doc your change makes stale. To
@@ -131,9 +131,8 @@ Everything else in this procedure — reading files, `git`/`gh` CLI, the tiers, 
 kill switch — is already harness-neutral and runs identically everywhere. The law does not care
 which ribosome reads it.
 
-**Sessionless trigger (the pacemaker).** The "Run the controller" verbs above all assume a live
-session. To run the loop with **no session at all** — reacting to GitHub events around the clock
-— enable the optional `.github/workflows/loop-tick.yml` pacemaker (it invokes a headless agent
-for one cycle on each relevant event, plus a cron floor). Setup and safety rails: the template's
-`pacemaker/README.md` and `docs/agents/SETUP.md` Step 6. It's the implanted pacemaker; the
-in-session verbs are you being the pacemaker.
+**Sessionless operation.** The "Run the controller" verbs above all assume a live session. An
+optional event-driven GitHub Actions workflow (not included in this scaffold) can wake the loop
+with no session at all. For now, run the loop from a live session: `/master-loop` once (it
+self-paces while your session is open), `/loop /master-loop`, or a cloud `/schedule`. See
+`docs/agents/SETUP.md` Step 6.

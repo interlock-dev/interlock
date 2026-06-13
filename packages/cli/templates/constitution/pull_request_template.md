@@ -3,7 +3,7 @@
 
 ## Tier (see `docs/agents/loop-policy.md` §2)
 - [ ] **Tier 0** — docs / tests / chore only (auto-merge on green CI)
-- [ ] **Tier 1** — feature / fix (green CI + dual agent review + one CODEOWNERS approval)
+- [ ] **Tier 1** — feature / fix (green CI + dual agent review; no human approval required for solo sovereign)
 - [ ] **Tier 2** — touches a protected path (always a CODEOWNERS human)
 
 ## Checklist

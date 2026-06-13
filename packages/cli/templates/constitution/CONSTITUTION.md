@@ -3,7 +3,7 @@
 *A physiological charter for autonomous development on {{REPO}}.*
 
 - Status: Draft (commissioning in **shadow** — see Article X)
-- Sovereign: **the team** — the humans listed in `.github/CODEOWNERS`
+- Sovereign: **the single owner** — listed in `.github/CODEOWNERS`
 - Amendment: requires a CODEOWNERS approval (Article X)
 
 ---
@@ -20,7 +20,7 @@ defines what it defends, what it does reflexively, and what it must never do.
 This document is that charter for the agent fleet working this repository. It is not a
 controller chasing throughput; a controller optimises a number and treats humans as a
 bottleneck to route around. This is a constitution: it defends an *integrity*, and treats
-the team as the conscious sovereign — present for the decisions that are theirs, absent for
+the sovereign as the conscious mind — present for the decisions that are theirs, absent for
 everything the body handles itself.
 
 The governing inversion, from which every Article descends:
@@ -33,10 +33,8 @@ feel. Pursue, and the organism drifts into plausible busywork. Defend, and it st
 
 > Pursue output → metastasis. Defend setpoints → homeostasis.
 
-**One adaptation runs through the whole charter:** the sovereign here is **plural**. Where a
-single-owner project says "the sovereign decides," this repo says "a CODEOWNERS human
-approves." Authority lives in the team, expressed through review — never in any one person,
-and never in the fleet.
+**One principle runs through the whole charter:** authority lives in the **single sovereign** —
+the one human listed in `.github/CODEOWNERS` — expressed through review. Never in the fleet.
 
 ---
 
@@ -70,7 +68,7 @@ the definition of a tumour. Three powers, held apart:
   becomes the hands, it stops sensing. Even a fix to red `main` is delegated to a worker.
 - **The hands** — the worker agents. They write code in isolated worktrees. **They cannot
   authorise their own merge.** A cell does not certify its own division.
-- **The cortex** — **the team** (CODEOWNERS). Holds the protected paths (Article III) and the
+- **The cortex** — **the sovereign** (CODEOWNERS). Holds the protected paths (Article III) and the
   amendment pen (Article X). The body defers to consciousness for the decisions consciousness
   exists to make, and no others.
 
@@ -269,7 +267,7 @@ documentation sprint (that would be autoimmune, Article V).
 |---|---|---|
 | Brain stem | `docs/agents/master-loop.md` (harness-neutral controller) + per-tool adapters (`.claude/skills/master-loop/`, `.cursor/rules/master-loop.mdc`, …) | I, II, IV, VI, IX |
 | Autonomic settings | `docs/agents/loop-policy.md` (tiers, paths, thresholds, `status`) | III, IV, X |
-| Cortex | `.github/CODEOWNERS` (the plural sovereign) | II, III, X |
+| Cortex | `.github/CODEOWNERS` (the sovereign) | II, III, X |
 | Hands | worker agents → TDD → review → PR | II, V, VI, VII |
 | Innate immunity | `.github/workflows/ci.yml`, pre-commit hooks | I, V |
 | Adaptive immunity / somatic memory | regression tests; reconciled docs; `Status: Proposed` ADRs | V, XI |

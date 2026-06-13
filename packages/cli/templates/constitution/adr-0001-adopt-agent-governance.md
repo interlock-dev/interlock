@@ -17,9 +17,9 @@ Adopt the physiological charter in [`../agents/CONSTITUTION.md`](../agents/CONST
 the operative dials in [`../agents/loop-policy.md`](../agents/loop-policy.md). In summary:
 
 - **Tiered autonomy by reversibility of harm.** Tier 0 (docs/tests/chore) auto-merges on green
-  CI; Tier 1 (features/fixes) needs green CI + dual agent review + one CODEOWNERS human
-  approval; Tier 2 (protected paths) is always a human.
-- **Plural sovereign.** Authority lives in the team via `.github/CODEOWNERS`, never one person.
+  CI; Tier 1 (features/fixes) needs green CI + dual agent review (no human approval required for
+  the solo sovereign); Tier 2 (protected paths) is always the sovereign.
+- **Single sovereign.** Authority lives in the sole CODEOWNERS human, expressed through review — never in the fleet.
 - **Self-modification ban.** The fleet may never edit its own gates, policy, or charter.
 - **External-anchor rule.** The fleet acts only on human-anchored work; it never invents its own.
 - **Shadow commissioning.** Nothing auto-merges until ten consecutive clean audits.
@@ -27,7 +27,7 @@ the operative dials in [`../agents/loop-policy.md`](../agents/loop-policy.md). I
 ## Consequences
 
 - The protected-path list (`loop-policy.md` §2) is the audit surface and **must be kept current**
-  as the codebase grows — domain-critical paths (the the external system integration, the core algorithms,
+  as the codebase grows — domain-critical paths (the external system integration, the core algorithms,
   credential handling) join it when they land.
 - The Tier-1 human approval was waived by the solo sovereign at genesis (Article III); it can
   be reinstated by a future ADR if the team grows or the metrics warrant it.

@@ -183,5 +183,5 @@ Domain vocabulary lives in `CONTEXT.md`. These are *process* terms only.
 - **Worker / hands** — an agent that writes code in an isolated worktree.
 - **Tier** — a PR's autonomy class (0/1/2), by reversibility of harm.
 - **Shadow** — commissioning mode: full cycle, no real merges, audit instead.
-- **Sovereign** — any CODEOWNERS human (the cortex is plural here).
+- **Sovereign** — the CODEOWNERS human (the sole owner; Tier-2 PRs require their review).
 - **Referred pain** — a `needs-engineer` question: flag the decision, keep working.

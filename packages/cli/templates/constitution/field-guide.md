@@ -19,8 +19,8 @@ well-defined work, stay close on the decisions that carry real consequences.
 
 ## Your role: you're a "sovereign"
 
-The Constitution calls the humans **sovereigns** (plural — it's the whole team, listed in
-[`.github/CODEOWNERS`](../../.github/CODEOWNERS)). In practice that means three things are
+The Constitution calls you the **sovereign** — the single human listed in
+[`.github/CODEOWNERS`](../../.github/CODEOWNERS). In practice that means three things are
 *yours*, and the fleet can never take them:
 
 1. **The judgement calls** — what to build, and whether an answer is engineering-correct.

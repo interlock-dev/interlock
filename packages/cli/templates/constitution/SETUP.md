@@ -18,15 +18,20 @@ Two ways: the GitHub UI (click-through) or the API (reproducible). Either gives 
 **Settings → Branches → Add branch ruleset** (or *Add classic branch protection rule*) for
 `main`, and enable:
 
+> **Solo configuration.** You are the single sovereign. Requiring 1 human approval on every PR
+> would be unsatisfiable — you cannot approve your own PRs. The settings below enforce the
+> single-sovereign model: green checks gate all PRs; the Code Owner review rule gates Tier-2
+> (protected-path) PRs to you without requiring a second human approval on ordinary Tier-1 work.
+
 | Setting | Enforces | Constitution |
 |---|---|---|
 | **Require a pull request before merging** | the hands cannot self-merge; nothing reaches `main` un-PR'd | Art. II, III |
-| → **Require approvals: 1** | CODEOWNERS gate for Tier-2 / germline paths (Tier-1 approval waived at genesis — Art. III) | Art. III (Tier 2), X |
-| → **Require review from Code Owners** | a CODEOWNERS human gates Tier-2 / germline changes | Art. II, III, X |
+| → **Require approvals: 0** | solo model — Tier-1 merges on green checks + agent reviews alone; Tier-2 is gated by the Code Owner rule below | Art. III |
+| → **Require review from Code Owners** | you (the sole CODEOWNERS entry) must approve PRs touching protected paths (Tier-2) | Art. II, III, X |
 | → **Dismiss stale approvals on new commits** | re-review after the diff changes | Art. III |
-| **Require status checks to pass** → select **`{{CI_CHECK_NAME}}`** | `main` is always green; CI is the innate-immunity gate | Art. I, V |
+| **Require status checks to pass** → select **`{{CI_CHECK_NAME}}`** and **`interlock`** | `main` is always green; CI + the interlock gate are the innate-immunity gate | Art. I, V |
 | → **Require branches to be up to date before merging** | no merge onto a stale base | Art. I |
-| **Do not allow bypassing the above settings** (a.k.a. *include administrators / enforce_admins*) | no organ sits above the law — even a sovereign goes through review | Art. II interlock |
+| **Do not allow bypassing the above settings** (a.k.a. *include administrators / enforce_admins*) | no organ sits above the law — even the sovereign goes through review | Art. II interlock |
 | **Block force pushes** | history is not rewritten under the fleet | Art. VIII |
 | **Restrict deletions** | `main` cannot be deleted | — |
 
@@ -43,11 +48,11 @@ personal account cannot see it). Then:
 gh api -X PUT repos/{{OWNER}}/{{REPO}}/branches/main/protection \
   --input - <<'JSON'
 {
-  "required_status_checks": { "strict": true, "contexts": ["checks"] },
+  "required_status_checks": { "strict": true, "contexts": ["{{CI_CHECK_NAME}}", "interlock"] },
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "require_code_owner_reviews": true,
-    "required_approving_review_count": 1,
+    "required_approving_review_count": 0,
     "dismiss_stale_reviews": true
   },
   "restrictions": null,
@@ -57,16 +62,18 @@ gh api -X PUT repos/{{OWNER}}/{{REPO}}/branches/main/protection \
 JSON
 ```
 
-> **When you later relax the Tier-1 human gate** (the Constitution permits this once the loop's
-> metrics earn trust — Article III), that is this rule's `required_approving_review_count` /
-> *Require approvals*. Lower it by amendment (a CODEOWNERS-reviewed PR), never silently.
+> **Solo sovereign:** `required_approving_review_count: 0` is intentional. You cannot approve
+> your own PRs; Tier-1 merges on green checks + both agent reviews. The `require_code_owner_reviews`
+> rule above still gates Tier-2 protected-path PRs to you — GitHub treats a CODEOWNERS review as
+> distinct from the numeric approval count. If the team ever grows, raise the count by amendment
+> (a CODEOWNERS-reviewed PR), never silently.
 
 ---
 
 ## Step 2 — Create the labels
 
 The fleet speaks in labels. Create them once (the exact `gh label create` block lives in
-[`triage-labels.md`](./triage-labels.md)). Run it from an environment authenticated for the the org
+[`triage-labels.md`](./triage-labels.md)). Run it from an environment authenticated for the org
 repo, or create the labels in the GitHub UI under **Issues → Labels**.
 
 ## Step 3 — Open the Loop Journal
@@ -77,9 +84,11 @@ Create one pinned issue titled **"Loop Journal"** — the fleet writes one comme
 
 ## Step 4 — Populate CODEOWNERS
 
-[`.github/CODEOWNERS`](../../.github/CODEOWNERS) currently lists one owner. Add your teammates so
-the cortex is genuinely plural — a single owner cannot review their own PRs, which would deadlock
-the Code-Owner-review rule from Step 1. **At least two owners** is the practical minimum.
+[`.github/CODEOWNERS`](../../.github/CODEOWNERS) should list you as the sole owner. You are the
+single sovereign — Tier-2 (protected-path) PRs require your review; ordinary Tier-1 PRs merge on
+green checks + both agent reviews without a human approval you cannot give yourself. There is no
+second human to add. If the team ever grows, add teammates here and raise the approval count in
+Step 1 by amendment.
 
 ## Step 5 — Commission in shadow, then go live
 
@@ -89,24 +98,13 @@ consecutive `would-auto-merge` PRs** have been audited clean, a sovereign flips
 `status: live` (a germline edit — by PR). Auto-merge for Tiers 0 and 1 then turns on; Tier 2 stays
 human forever.
 
-## Step 6 — Optional: the event-driven pacemaker (sessionless — costs API tokens)
+## Step 6 — Sessionless operation (optional)
 
-**Most people should skip this.** You wake the loop the free way — `/master-loop` once (it
-self-paces while your session is open), `/loop /master-loop`, or a cloud `/schedule` — all on
-your Claude Code subscription, no extra API billing. The pacemaker below makes the loop run with
-**no live session at all**, but every wake spends **metered Anthropic API tokens**, so only add
-it if you accept that cost. To enable it:
-
-1. Add the repo secret `ANTHROPIC_API_KEY` (Settings → Secrets and variables → Actions).
-2. Install the Claude GitHub App: https://github.com/apps/claude
-3. Add `.github/workflows/loop-tick.yml` (from the template's `pacemaker/`) via a PR — it's
-   germline. It wakes on issue/PR/review/CI events + a 6-hour cron, runs one controller cycle
-   headless, and respects `status: paused`. Full notes and safety rails: the template's
-   `pacemaker/README.md`.
-
-Best enabled **after** you've gone `live` (Step 5). It handles homeostatic maintenance
-(reflex, PR servicing, inbox, reclaim, journal); heavy parallel worker dispatch still wants a
-longer-lived session or scheduled run.
+An optional event-driven workflow (a GitHub Actions file that wakes the loop on issue/PR/CI
+events with no live session) is **not included in this scaffold**. Run the loop from a live agent
+session instead: `/master-loop` once (it self-paces while your session is open),
+`/loop /master-loop`, or a cloud `/schedule`. These run on your Claude Code subscription with no
+extra API billing and are the recommended approach for a single-sovereign repo.
 
 ---
 
