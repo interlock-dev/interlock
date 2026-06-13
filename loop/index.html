@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Don't orchestrate your agents. Give them a brain stem. — Interlock</title>
+<meta name="description" content="The loop that runs an AI coding-agent fleet: a homeostatic controller that defends setpoints, triages the largest deviation, and never writes its own code. The engine behind Interlock.">
+<meta name="author" content="Farshad Pasbani">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Don't orchestrate your agents. Give them a brain stem.">
+<meta property="og:description" content="The loop that runs an agent fleet — a homeostatic controller that defends setpoints and never writes its own code.">
+<meta property="og:url" content="https://interlock.feristal.com/loop/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Don't orchestrate your agents. Give them a brain stem.">
+<meta name="twitter:description" content="The loop that runs an agent fleet — a homeostatic controller that defends setpoints and never writes its own code.">
+<style>
+  :root {
+    --ink: #1b1a17;
+    --ink-soft: #4a463f;
+    --paper: #faf7f1;
+    --rule: #e4ddcf;
+    --ember: #a4402a;
+    --measure: 38rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: 1.18rem;
+    line-height: 1.66;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--measure); margin: 0 auto; padding: 5rem 1.5rem 6rem; }
+  .eyebrow {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ember); font-weight: 600; margin: 0 0 1.4rem;
+  }
+  .eyebrow a { color: var(--ember); text-decoration: none; border: 0; }
+  h1 {
+    font-size: clamp(2.1rem, 6vw, 3.1rem); line-height: 1.08;
+    font-weight: 600; letter-spacing: -0.012em; margin: 0 0 1.1rem;
+  }
+  .standfirst { font-size: 1.28rem; color: var(--ink-soft); font-style: italic; margin: 0 0 1.2rem; }
+  .byline {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.04em; color: var(--ink-soft);
+    border-top: 1px solid var(--rule); padding-top: 1.1rem; margin: 2rem 0 3rem;
+  }
+  h2 {
+    font-size: 1.5rem; line-height: 1.2; font-weight: 600; letter-spacing: -0.005em;
+    margin: 3.2rem 0 1rem;
+  }
+  p { margin: 0 0 1.25rem; }
+  a { color: var(--ember); text-decoration: none; border-bottom: 1px solid rgba(164,64,42,0.35); }
+  a:hover { border-bottom-color: var(--ember); }
+  strong { font-weight: 600; }
+  blockquote {
+    margin: 1.8rem 0; padding: 0.2rem 0 0.2rem 1.4rem;
+    border-left: 3px solid var(--ember);
+    font-size: 1.24rem; font-style: italic; color: var(--ink);
+  }
+  blockquote p { margin: 0.3rem 0; }
+  code, pre { font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace; }
+  code { font-size: 0.86em; background: #efe9dc; padding: 0.1em 0.38em; border-radius: 4px; }
+  pre {
+    background: #2b2722; color: #f3ede0; padding: 1.05rem 1.2rem; border-radius: 8px;
+    overflow-x: auto; font-size: 0.92rem; line-height: 1.5; margin: 1.6rem 0;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+  ol { padding-left: 1.3rem; }
+  ol li { margin: 0.55rem 0; padding-left: 0.3rem; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  .cta { border: 1px solid var(--rule); border-radius: 10px; background: #fffdf8; padding: 1.4rem 1.6rem; margin: 2.6rem 0 0; }
+  .cta h2 { margin-top: 0; }
+  .cta ul {
+    list-style: none; padding: 0; margin: 0.8rem 0 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.96rem;
+  }
+  .cta li { margin: 0.4rem 0; }
+  footer {
+    max-width: var(--measure); margin: 0 auto; padding: 0 1.5rem 4rem;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem; color: var(--ink-soft);
+  }
+  ::selection { background: #f1d9c9; }
+</style>
+</head>
+<body>
+<article class="wrap">
+  <p class="eyebrow"><a href="/">&larr; Interlock</a> &nbsp;·&nbsp; the loop</p>
+  <h1>Don't orchestrate your agents. Give them a brain stem.</h1>
+  <p class="standfirst">The manifesto made the case for governing agents. This is the engine that does the governing — and the part I'd actually sell you.</p>
+  <p class="byline">Farshad Pasbani</p>
+
+  <p>Most &ldquo;agentic coding&rdquo; still has a human in the middle of every cycle. You prompt an agent, it works, you review, you merge, you prompt the next one. The agent is autonomous; the <em>workflow</em> is not. You've automated the typing and kept the babysitting.</p>
+
+  <p>The piece that removes the babysitter — without removing the safety — is a <strong>loop</strong>. Not a script that fires agents at a queue, but a controller that runs the way a body runs the thousand things it never troubles you with. I call it the brain stem, and it's the part of this system I'd actually sell you.</p>
+
+  <h2>One cycle, and only one job</h2>
+
+  <p>The loop wakes, does exactly one thing, records it, and goes back to sleep. That one thing is never &ldquo;make progress.&rdquo; It's <strong>correct the single largest deviation from where things should be.</strong></p>
+
+  <blockquote><p>Sense &rarr; correct the largest deviation &rarr; record &rarr; sleep.</p></blockquote>
+
+  <p>That inversion is the whole trick, and it's the same one the <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md">constitution</a> is built on: a healthy system isn't goal-seeking, it's deviation-correcting. A loop told to maximise throughput fills your repo with confident busywork. A loop told to defend a set of setpoints — <code>main</code> is green, nothing merges unreviewed, no teammate is ever blocked waiting on it — stays quiet when nothing's wrong and acts decisively when something is. An organism that acts when nothing is wrong isn't healthy; it's feverish.</p>
+
+  <p>The cycle is <strong>stateless in the agent's context and stateful in the world.</strong> Nothing is held in a conversation between runs — every fact is read back from GitHub at the top of the cycle and written back at the bottom. Lose the process, lose nothing. The repository is the memory; the agent is just the thing that reads it this minute.</p>
+
+  <h2>The regulator never touches the code</h2>
+
+  <p>The first law of the loop: <strong>the controller writes no application code. Ever.</strong> It senses, dispatches, merges, labels, and journals — nothing else. Even fixing a red <code>main</code> is delegated to a worker it spawns.</p>
+
+  <p>This sounds like a limitation. It's the opposite — it's what keeps the whole thing honest. The moment the regulator becomes the hands, it stops regulating; a thermostat that starts carrying firewood is no longer measuring the room. So the powers are held apart: the <strong>brain stem</strong> decides what needs doing, the <strong>hands</strong> (worker agents, each in an isolated worktree) do it, and the <strong>cortex</strong> — you — holds the decisions that are constitutionally yours. No organ can reach its own off-switch.</p>
+
+  <h2>The ladder: triage, not a to-do list</h2>
+
+  <p>When the loop senses trouble, it doesn't work through a list top to bottom. It fixes the <em>worst</em> thing and stops, because fixing the worst thing often changes what the second-worst thing even is. The rungs, in fixed order:</p>
+
+  <ol>
+    <li><strong>Kill switch.</strong> If the policy says <code>paused</code>, write one line and stop. Your hand on the brain stem — and because the policy file is a protected path, the loop can never un-pause itself.</li>
+    <li><strong>The red-<code>main</code> reflex</strong> — the rung I'm proudest of, because it refuses to be stupid about failure. It first <em>classifies the red</em>. A <strong>code-red</strong> (a test or build genuinely broke) triggers a hard halt: no merges, no new work, spawn exactly one fix worker against the break, notify. But a <strong>gate-down</strong> — CI couldn't even run, because Actions billing is exhausted or the runner failed at startup — is a tooling outage, not a bug. Spawning a fix worker against an empty wallet is theatre. So instead it holds all merges (a dead gate can't certify anything green), pauses dispatch, and pings the human to restore CI. Same red X on GitHub; two completely different ailments; two correct responses. Most automation can't tell &ldquo;the patient is bleeding&rdquo; from &ldquo;the lights went out.&rdquo;</li>
+    <li><strong>Fold the answered inbox.</strong> Any question you've replied to gets folded back in and re-queued.</li>
+    <li><strong>Service open PRs by tier.</strong> Green Tier-0 (docs, tests) merges on CI alone. Tier-1 (ordinary code) merges on green CI plus two independent agent reviews. Tier-2 (CI config, auth, the governance files) never merges automatically — it waits for you. Worst-file-wins: one protected path makes the whole PR Tier 2.</li>
+    <li><strong>Reclaim stale work.</strong> A claimed task with no commits for two cycles is released back to the queue. Tissue that isn't healing gets reabsorbed.</li>
+    <li><strong>Dispatch.</strong> While there's capacity and ready work, it claims tasks, groups them by file surface so two agents never fight over the same files, and spawns one worker per surface.</li>
+    <li><strong>Replenish — only from outside itself.</strong> The safety rail that matters most; its own section below.</li>
+    <li><strong>Record.</strong> One journal comment per cycle: a human summary, a <em>waiting-on-you</em> digest, and a machine-readable metrics block. Notifications fire on exactly four events — a question for you, a red-<code>main</code> halt, CI down, a batch ready for audit — and nothing else. Notify on everything and you mute it; notify only on what needs a conscious decision and you wake for the emergency.</li>
+  </ol>
+
+  <h2>The immune rule: it can only act on work you anchored</h2>
+
+  <p>An agent loop that invents its own work is the dangerous kind — the one that &ldquo;improves&rdquo; things nobody asked to change and calls it initiative. This one structurally cannot. It may only act on work anchored <strong>outside the fleet</strong>: issues you filed, the roadmap you wrote, the backlog. Work the loop dreams up about itself is non-self wearing a self costume, and an immune system that attacks the self is the disease, not the defence.</p>
+
+  <p>So replenishment is strict: fully specified work becomes ready; underspecified work becomes a <em>question for you</em>, never an invented spec; an agent's unprompted &ldquo;we should refactor X&rdquo; can be <em>filed</em> for your triage but never promoted to ready by the loop itself. The fleet's autonomy is real, but its agenda is always yours.</p>
+
+  <h2>The dials, and why they're locked</h2>
+
+  <p>All of this is tuned from one file — the <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md">loop policy</a>: the kill switch, how many workers run at once, which paths are protected, when to replenish, how long before stale work is reclaimed, even which model tier handles which role (cheap workhorses for grunt implementation, the strongest models reserved for planning and for reviewing protected-path changes, where being wrong is unrecoverable).</p>
+
+  <p>And the policy file is itself a protected path. The loop reads its own constraints every cycle and <strong>can never edit them.</strong> It can learn — it writes tests, reconciles docs, leaves notes — but it writes those into the body, never into the law. Acquired traits aren't inherited; one noisy night never rewrites the inheritance. Changing the dials takes a human-reviewed, human-merged pull request. The organism does not get to rewrite its own DNA.</p>
+
+  <h2>Commissioning in shadow</h2>
+
+  <p>You don't wire a new safety system straight to the machine. A freshly installed loop runs in <strong>shadow</strong>: it executes the full cycle but, instead of merging, labels each PR with what it <em>would</em> have done and leaves it for you to audit. It earns its way to <code>live</code> only after you've watched it be right enough consecutive times — and a single bad audit resets the count. Trust is a ladder you climb, not a switch you flip on faith.</p>
+
+  <h2>This is the part worth buying</h2>
+
+  <p><a href="https://github.com/interlock-dev/interlock">Interlock</a> — the deterministic tier-gate from the <a href="/">first essay</a> — is one organ of this system: the fuse that makes the tiers mechanical instead of merely written. But the loop is the nervous system that <em>uses</em> the fuse. It's the difference between a tool you operate and an organism that operates itself, safely, because every dangerous degree of freedom — inventing work, editing its own rules, merging what it shouldn't, running while you're trying to stop it — is closed off by construction rather than by hoping the model behaves.</p>
+
+  <div class="cta">
+    <h2>Read the engine</h2>
+    <p>The full controller and its dials are public, and a fleet running under them built most of the tool you'd install.</p>
+    <ul>
+      <li>The brain stem: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/master-loop.md">master-loop.md</a></li>
+      <li>The dials: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/loop-policy.md">loop-policy.md</a></li>
+      <li>The first organ, installable today: <code>npx agent-interlock init</code></li>
+      <li>Repo: <a href="https://github.com/interlock-dev/interlock">github.com/interlock-dev/interlock</a></li>
+    </ul>
+  </div>
+</article>
+<footer>
+  &copy; 2026 Farshad Pasbani · <a href="/">The manifesto</a> · <a href="https://github.com/interlock-dev/interlock">Interlock</a> is Apache-2.0.
+</footer>
+</body>
+</html>

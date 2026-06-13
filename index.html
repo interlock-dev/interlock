@@ -102,9 +102,9 @@
   <p class="eyebrow">Interlock — a field note</p>
   <h1>I gave my coding agents a constitution</h1>
   <p class="standfirst">The case for governing agents instead of supervising them — and the deterministic gate I extracted from it.</p>
-  <p class="byline">Farshad Pasbani · structural engineer, building software</p>
+  <p class="byline">Farshad Pasbani</p>
 
-  <p>For the last few months I've let AI agents write code and open pull requests against my repositories while I sleep. Not as a demo — as my actual workflow. The thing that made that safe enough to do wasn't a smarter model or a cleverer prompt. It was a written <strong>constitution</strong>: a charter that defines what the agents may do on their own, what always needs me, and what they may never touch.</p>
+  <p>Over the last few days I've let AI agents write code and open pull requests against my repositories while I sleep. Not as a demo — as my actual workflow. The thing that made that safe enough to do wasn't a smarter model or a cleverer prompt. It was a written <strong>constitution</strong>: a charter that defines what the agents may do on their own, what always needs me, and what they may never touch.</p>
 
   <p>I want to make the case for <em>governing</em> agents instead of <em>supervising</em> them — and then hand you the first piece of it as working code.</p>
 
@@ -163,15 +163,13 @@
 
   <p>The governor, governing its own birth. I can't think of a cleaner test.</p>
 
-  <h2>Try it, then tell me where I'm wrong</h2>
+  <h2>Try it</h2>
 
   <p>Interlock is v0.1, Apache-2.0, GitHub-Actions-only for now, and it runs entirely on your own CI — nothing hosted, nothing touching your code.</p>
 
   <pre><code>npx agent-interlock init</code></pre>
 
   <p>That writes the policy and prints the workflow to paste. About a minute, start to finish. The constitution it came from is in the repo; the tool is the first organ of it made enforceable, and there will be more — a local pre-commit / Claude Code adapter next, so the same policy holds before a PR even exists.</p>
-
-  <p>I'm not claiming this is finished thinking. I'm claiming it's a better frame than &ldquo;supervise harder,&rdquo; and that the frame produces tools you can actually install today. If you run agents, I'd genuinely like to know two things: which paths in your repos you'd never let one touch — and what it would take for you to trust a fuse like this with the keys.</p>
 
   <div class="cta">
     <h2>Interlock</h2>
@@ -182,9 +180,13 @@
       <li>The constitution: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md">CONSTITUTION.md</a></li>
     </ul>
   </div>
+
+  <p style="margin-top:2.4rem;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:0.98rem;">
+    <strong>Read next:</strong> <a href="/loop/">Don't orchestrate your agents &mdash; give them a brain stem</a> &mdash; the loop that actually runs the fleet, and the part worth buying.
+  </p>
 </article>
 <footer>
-  &copy; 2026 Farshad Pasbani · <a href="https://github.com/interlock-dev/interlock">Interlock</a> is Apache-2.0.
+  &copy; 2026 Farshad Pasbani · <a href="/loop/">The loop</a> · <a href="https://github.com/interlock-dev/interlock">Interlock</a> is Apache-2.0.
 </footer>
 </body>
 </html>
