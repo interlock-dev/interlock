@@ -17,9 +17,10 @@ program
   .command("init")
   .description("Scaffold interlock.yml and print the workflow to paste")
   .option("--force", "overwrite an existing interlock.yml", false)
-  .action((opts: { force: boolean }) => {
+  .option("--with-constitution", "also scaffold the full agent constitution", false)
+  .action((opts: { force: boolean; withConstitution: boolean }) => {
     process.exitCode = runInit(
-      { cwd: process.cwd(), force: opts.force },
+      { cwd: process.cwd(), force: opts.force, withConstitution: opts.withConstitution },
       { log: console.log, error: console.error }
     );
   });

@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildPolicyYaml, runInit, WORKFLOW_SNIPPET } from "../src/commands/init.js";
 import { parsePolicy } from "interlock-core";
+import { germlinePaths } from "../src/constitution/render.js";
 
 function tempRepo(dirs: string[] = []): string {
   const root = mkdtempSync(join(tmpdir(), "interlock-test-"));
@@ -56,5 +57,17 @@ describe("WORKFLOW_SNIPPET", () => {
     expect(WORKFLOW_SNIPPET).toContain("contents: read");
     expect(WORKFLOW_SNIPPET).toContain("pull-requests: write");
     expect(WORKFLOW_SNIPPET).toContain("issues: write");
+  });
+});
+
+describe("buildPolicyYaml with germline (constitution mode)", () => {
+  it("renders tier2 from germlinePaths when asked", () => {
+    const yaml = buildPolicyYaml({ hasDocs: true, hasTests: true, hasWorkflows: true }, true);
+    for (const g of germlinePaths()) expect(yaml).toContain(`"${g}"`);
+  });
+  it("default (no germline) keeps the lean tier2", () => {
+    const yaml = buildPolicyYaml({ hasDocs: false, hasTests: false, hasWorkflows: false }, false);
+    expect(yaml).toContain('"interlock.yml"');
+    expect(yaml).not.toContain('"docs/agents/**"');
   });
 });

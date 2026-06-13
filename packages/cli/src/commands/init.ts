@@ -1,5 +1,7 @@
 import { existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { germlinePaths } from "../constitution/render.js";
+import { scaffoldConstitution } from "./constitution.js";
 
 export interface Detected {
   hasDocs: boolean;
@@ -23,15 +25,19 @@ jobs:
       - uses: farshadpasbani/interlock@v1
 `;
 
-export function buildPolicyYaml(d: Detected): string {
+export function buildPolicyYaml(d: Detected, withConstitution = false): string {
   const tier0: string[] = [];
   if (d.hasDocs) tier0.push("docs/**");
   tier0.push("**/*.md");
   if (d.hasTests) tier0.push("tests/**");
 
   const tier2: string[] = [];
-  if (d.hasWorkflows) tier2.push(".github/**");
-  tier2.push("interlock.yml"); // the gate cannot edit its own off-switch
+  if (withConstitution) {
+    tier2.push(...germlinePaths());
+  } else {
+    if (d.hasWorkflows) tier2.push(".github/**");
+    tier2.push("interlock.yml"); // the gate cannot edit its own off-switch
+  }
 
   const list = (items: string[]) =>
     items.map((i) => `    - "${i}"`).join("\n");
@@ -61,6 +67,7 @@ rules:
 export interface InitOptions {
   cwd: string;
   force: boolean;
+  withConstitution?: boolean;
 }
 
 export interface InitIo {
@@ -82,12 +89,16 @@ export function runInit(opts: InitOptions, io: InitIo): number {
       existsSync(join(opts.cwd, "__tests__")),
     hasWorkflows: existsSync(join(opts.cwd, ".github", "workflows")),
   };
-  writeFileSync(target, buildPolicyYaml(detected));
+  writeFileSync(target, buildPolicyYaml(detected, opts.withConstitution ?? false));
   io.log(`Wrote interlock.yml (mode: observe).`);
   io.log("");
   io.log("Add this workflow to finish the install:");
   io.log("");
   io.log(WORKFLOW_SNIPPET);
   io.log("Then open any PR — Interlock will post its first verdict.");
+  if (opts.withConstitution) {
+    io.log("");
+    return scaffoldConstitution({ cwd: opts.cwd, force: opts.force }, io);
+  }
   return 0;
 }
