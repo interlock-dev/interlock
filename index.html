@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I gave my coding agents a constitution — Interlock</title>
+<meta name="description" content="The case for governing AI coding agents instead of supervising them — a physiological charter for an agent fleet, and the deterministic merge gate extracted from it.">
+<meta name="author" content="Farshad Pasbani">
+<!-- Open Graph / social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="I gave my coding agents a constitution">
+<meta property="og:description" content="Govern agents, don't supervise them. A constitution for an AI coding-agent fleet — and the deterministic fuse extracted from it.">
+<meta property="og:url" content="https://interlock.feristal.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="I gave my coding agents a constitution">
+<meta name="twitter:description" content="Govern agents, don't supervise them. A constitution for an AI coding-agent fleet — and the deterministic fuse extracted from it.">
+<style>
+  :root {
+    --ink: #1b1a17;
+    --ink-soft: #4a463f;
+    --paper: #faf7f1;
+    --rule: #e4ddcf;
+    --ember: #a4402a;
+    --measure: 38rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: 1.18rem;
+    line-height: 1.66;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--measure); margin: 0 auto; padding: 5rem 1.5rem 6rem; }
+  .eyebrow {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ember); font-weight: 600; margin: 0 0 1.4rem;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 6vw, 3.1rem); line-height: 1.08;
+    font-weight: 600; letter-spacing: -0.012em; margin: 0 0 1.1rem;
+  }
+  .standfirst { font-size: 1.28rem; color: var(--ink-soft); font-style: italic; margin: 0 0 1.2rem; }
+  .byline {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.04em; color: var(--ink-soft);
+    border-top: 1px solid var(--rule); padding-top: 1.1rem; margin: 2rem 0 3rem;
+  }
+  h2 {
+    font-size: 1.5rem; line-height: 1.2; font-weight: 600; letter-spacing: -0.005em;
+    margin: 3.2rem 0 1rem;
+  }
+  p { margin: 0 0 1.25rem; }
+  a { color: var(--ember); text-decoration: none; border-bottom: 1px solid rgba(164,64,42,0.35); }
+  a:hover { border-bottom-color: var(--ember); }
+  strong { font-weight: 600; }
+  blockquote {
+    margin: 1.8rem 0; padding: 0.2rem 0 0.2rem 1.4rem;
+    border-left: 3px solid var(--ember);
+    font-size: 1.24rem; font-style: italic; color: var(--ink);
+  }
+  blockquote p { margin: 0.3rem 0; }
+  .pull { font-variant: normal; }
+  code, pre {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  code { font-size: 0.86em; background: #efe9dc; padding: 0.1em 0.38em; border-radius: 4px; }
+  pre {
+    background: #2b2722; color: #f3ede0; padding: 1.05rem 1.2rem; border-radius: 8px;
+    overflow-x: auto; font-size: 0.92rem; line-height: 1.5; margin: 1.6rem 0;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+  .dl-organs dt { font-weight: 600; margin-top: 1.1rem; }
+  .dl-organs dd { margin: 0.2rem 0 0; color: var(--ink); }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  .cta {
+    border: 1px solid var(--rule); border-radius: 10px; background: #fffdf8;
+    padding: 1.4rem 1.6rem; margin: 2.6rem 0 0;
+  }
+  .cta h2 { margin-top: 0; }
+  .cta ul {
+    list-style: none; padding: 0; margin: 0.8rem 0 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.96rem;
+  }
+  .cta li { margin: 0.4rem 0; }
+  footer {
+    max-width: var(--measure); margin: 0 auto; padding: 0 1.5rem 4rem;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem; color: var(--ink-soft);
+  }
+  ::selection { background: #f1d9c9; }
+</style>
+</head>
+<body>
+<article class="wrap">
+  <p class="eyebrow">Interlock — a field note</p>
+  <h1>I gave my coding agents a constitution</h1>
+  <p class="standfirst">The case for governing agents instead of supervising them — and the deterministic gate I extracted from it.</p>
+  <p class="byline">Farshad Pasbani · structural engineer, building software</p>
+
+  <p>For the last few months I've let AI agents write code and open pull requests against my repositories while I sleep. Not as a demo — as my actual workflow. The thing that made that safe enough to do wasn't a smarter model or a cleverer prompt. It was a written <strong>constitution</strong>: a charter that defines what the agents may do on their own, what always needs me, and what they may never touch.</p>
+
+  <p>I want to make the case for <em>governing</em> agents instead of <em>supervising</em> them — and then hand you the first piece of it as working code.</p>
+
+  <h2>The dilemma everyone running capable agents hits</h2>
+
+  <p>Review every change yourself and you've rebuilt the exact bottleneck you adopted agents to escape. Trust them and merge freely, and sooner or later one helpfully &ldquo;tidies up&rdquo; your CI config or rewrites an auth path at 2am, and you find out in production. Supervision doesn't scale; blind trust doesn't survive. There's no dial between the two.</p>
+
+  <p>So I built one. The dial turned out to need a theory behind it.</p>
+
+  <h2>A healthy body is not goal-seeking — it is deviation-correcting</h2>
+
+  <p>The theory I borrowed is from physiology. A goal-seeking system optimises a number and treats everything in its way — including you — as a bottleneck to route around. A healthy body doesn't work like that. It isn't chasing a target; it's defending a set of setpoints against deviation. Your heart doesn't try to maximise beats. It holds 37&deg;C and a blood pH, and it corrects when they drift, through feedback loops you never consciously feel.</p>
+
+  <blockquote><p class="pull">Pursue output &rarr; metastasis.<br>Defend setpoints &rarr; homeostasis.</p></blockquote>
+
+  <p>Point an agent fleet at &ldquo;maximise throughput&rdquo; and it drifts into confident busywork — plausible PRs nobody asked for, refactors that help no one, motion mistaken for progress. Define what it must <em>defend</em> instead, and it stays sound. So the constitution doesn't tell the agents what to achieve. It defines what they protect, and lets them act freely everywhere else.</p>
+
+  <p>A few of the organs, because the specifics are the point:</p>
+
+  <dl class="dl-organs">
+    <dt>Tiered autonomy, drawn by reversibility of harm.</dt>
+    <dd>You notice your heartbeat only when something's wrong; most of what keeps you alive runs beneath attention. Changes are sorted the same way. <em>Tier 0</em> — docs, tests, anything behaviour-neutral — runs autonomically. <em>Tier 1</em> — ordinary code — gets review. <em>Tier 2</em> — the load-bearing walls: CI config, auth, the governance files themselves — always needs a human. The line isn't drawn by importance; it's drawn by how hard the damage is to undo.</dd>
+
+    <dt>An immune system that knows self from non-self.</dt>
+    <dd>The fleet may only act on work anchored <em>outside itself</em> — issues a human filed, the roadmap, the backlog. Work it invents <em>about itself</em> is non-self wearing a self costume, and an immune system that attacks the self is the disease. An agent that generates its own to-do list and then dutifully executes it isn't being helpful; it's autoimmune.</dd>
+
+    <dt>Reflexes faster than deliberation.</dt>
+    <dd>Red <code>main</code> freezes the whole fleet — no merges, no new work, one job only: fix the break. A hand leaves a hot stove before the brain is told there's heat.</dd>
+
+    <dt>A barrier between what it learns and what it is.</dt>
+    <dd>The fleet writes lessons into its <em>soma</em> — tests, docs, notes — constantly. But it can never edit its <em>germline</em>: the charter, the policy, the gates. Acquired traits aren't inherited; one noisy night never rewrites the inheritance. A change to the law requires a human-reviewed, human-merged pull request. The organism doesn't get to rewrite its own DNA.</dd>
+
+    <dt>Commissioning in shadow.</dt>
+    <dd>A new constitution isn't trusted on first contact. It runs the full cycle but applies &ldquo;would-have-merged&rdquo; labels <em>instead of</em> merging, and rests there for audit until a human has watched it be right enough times to flip it live. You prove a safety interlock fires correctly before you wire it to the machine — not after.</dd>
+  </dl>
+
+  <p>The whole charter is public: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md">CONSTITUTION.md</a>.</p>
+
+  <h2>From sermon to fuse</h2>
+
+  <p>Most of that charter is prose — English an agent reads and, mostly, obeys. But &ldquo;mostly obeys&rdquo; is not a guarantee, and a governance system you can talk out of governing isn't one. An infection cannot be allowed to tell the immune system to stand down.</p>
+
+  <p>So I took the part that <em>must</em> be mechanical — the tiers, the protected paths, the rule that an agent can't touch the load-bearing walls — and extracted it into deterministic code. No model in the loop. Glob matching and rule evaluation: same input, same verdict, every time.</p>
+
+  <blockquote><p class="pull">Read the docstring &rarr; credulous.<br>Read the fuse &rarr; grounded.</p></blockquote>
+
+  <p>A second AI policing the first one just gives you two things that hallucinate. A fuse has no opinions, no bad days, no jailbreak — which is exactly why you trust it with the thing that matters. <strong>The product is the law without the sermon.</strong></p>
+
+  <p>That extraction is <strong>Interlock</strong>. One <code>interlock.yml</code> in your repo; a GitHub Action that stamps every PR with its tier — Tier 0 green, Tier 1 review, Tier 2 <em>agents may not pass</em>. It reads its policy from the PR's base branch, so a pull request can't weaken the rules that judge it. It protects its own config file by default, so the gate can't edit its own off-switch. It starts in observe mode — labelling, never blocking — so you watch it be right before you let it bite.</p>
+
+  <h2>The governor, governing its own birth</h2>
+
+  <p>Here's the part I find hard to argue with. The repository that holds Interlock is governed by the same constitution Interlock enforces. Most of v0.1 was built and adversarially reviewed by an agent fleet running under that charter — Sonnet hands, Opus reviewers, tiered merges, the whole physiology. One of those reviews caught a path-normalisation bug where a <code>./</code>-prefixed path could dodge a protected-path rule; it's fixed, with tests, and it's exactly the class of failure the governance exists to surface.</p>
+
+  <p>And the first thing the finished gate did, in CI, was look at its own setup pull request, notice it touched protected paths, and stamp it <strong>Tier 2</strong> — declining to wave through the very change that installed it.</p>
+
+  <p>The governor, governing its own birth. I can't think of a cleaner test.</p>
+
+  <h2>Try it, then tell me where I'm wrong</h2>
+
+  <p>Interlock is v0.1, Apache-2.0, GitHub-Actions-only for now, and it runs entirely on your own CI — nothing hosted, nothing touching your code.</p>
+
+  <pre><code>npx agent-interlock init</code></pre>
+
+  <p>That writes the policy and prints the workflow to paste. About a minute, start to finish. The constitution it came from is in the repo; the tool is the first organ of it made enforceable, and there will be more — a local pre-commit / Claude Code adapter next, so the same policy holds before a PR even exists.</p>
+
+  <p>I'm not claiming this is finished thinking. I'm claiming it's a better frame than &ldquo;supervise harder,&rdquo; and that the frame produces tools you can actually install today. If you run agents, I'd genuinely like to know two things: which paths in your repos you'd never let one touch — and what it would take for you to trust a fuse like this with the keys.</p>
+
+  <div class="cta">
+    <h2>Interlock</h2>
+    <p>A deterministic merge gate for AI coding agents. Apache-2.0, runs on your own CI.</p>
+    <ul>
+      <li>Install: <code>npx agent-interlock init</code></li>
+      <li>Repo: <a href="https://github.com/interlock-dev/interlock">github.com/interlock-dev/interlock</a></li>
+      <li>The constitution: <a href="https://github.com/interlock-dev/interlock/blob/main/docs/agents/CONSTITUTION.md">CONSTITUTION.md</a></li>
+    </ul>
+  </div>
+</article>
+<footer>
+  &copy; 2026 Farshad Pasbani · <a href="https://github.com/interlock-dev/interlock">Interlock</a> is Apache-2.0.
+</footer>
+</body>
+</html>
