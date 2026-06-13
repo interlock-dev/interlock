@@ -940,7 +940,7 @@ git commit -m "feat(cli): scaffoldConstitution — write filled templates + setu
 - Modify: `packages/cli/src/index.ts`
 - Test: `packages/cli/test/init.test.ts` (append)
 
-- [ ] **Step 1: Append failing tests to `packages/cli/test/init.test.ts`**
+- [x] **Step 1: Append failing tests to `packages/cli/test/init.test.ts`**
 
 ```ts
 import { buildPolicyYaml } from "../src/commands/init.js";
@@ -959,12 +959,12 @@ describe("buildPolicyYaml with germline (constitution mode)", () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify fail**
+- [x] **Step 2: Run to verify fail**
 
 Run: `npx vitest run packages/cli/test/init.test.ts`
 Expected: FAIL — `buildPolicyYaml` takes 1 arg (TS error / wrong tier2).
 
-- [ ] **Step 3: Implement — extend `buildPolicyYaml` and `runInit` in `init.ts`**
+- [x] **Step 3: Implement — extend `buildPolicyYaml` and `runInit` in `init.ts`**
 
 Change the `buildPolicyYaml` signature to accept an optional germline flag and, when set, use
 `germlinePaths()` for tier2. Add this import at the top of `init.ts`:
@@ -1001,7 +1001,7 @@ Extend `InitOptions` with `withConstitution?: boolean` and, at the end of `runIn
 Also pass `withConstitution` into `buildPolicyYaml(detected, opts.withConstitution ?? false)` at
 the write site inside `runInit`.
 
-- [ ] **Step 4: Wire the flag in `index.ts`**
+- [x] **Step 4: Wire the flag in `index.ts`**
 
 In `packages/cli/src/index.ts`, on the `init` command add the option and thread it through:
 
@@ -1018,12 +1018,12 @@ In `packages/cli/src/index.ts`, on the `init` command add the option and thread 
   });
 ```
 
-- [ ] **Step 5: Run to verify pass + full suite + typecheck**
+- [x] **Step 5: Run to verify pass + full suite + typecheck**
 
 Run: `npx vitest run && npm run typecheck`
 Expected: all green.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add packages/cli/src/commands/init.ts packages/cli/src/index.ts packages/cli/test/init.test.ts
