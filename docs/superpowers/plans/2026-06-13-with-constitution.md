@@ -1089,7 +1089,7 @@ git commit -m "test(cli): end-to-end --with-constitution scaffold + germline syn
 
 **Files:** none (verification only)
 
-- [ ] **Step 1: Rebuild the CLI bundle (with the embed step) and smoke-test**
+- [x] **Step 1: Rebuild the CLI bundle (with the embed step) and smoke-test**
 
 Run: `npm run build -w packages/cli`
 Expected: `embedded 14 template files …` then esbuild emits `dist/index.js`. The bundle is a
@@ -1106,12 +1106,12 @@ cd /; rm -rf "$P"
 ```
 Expected: "scaffold OK", "no placeholders ✓".
 
-- [ ] **Step 2: Full gate**
+- [x] **Step 2: Full gate**
 
 Run: `npx vitest run && npm run typecheck`
 Expected: everything green (existing 76 + the new constitution tests).
 
-- [ ] **Step 3: Commit any leftover (none expected) and stop for review**
+- [x] **Step 3: Commit any leftover (none expected) and stop for review**
 
 ```bash
 git status --short   # should be clean
