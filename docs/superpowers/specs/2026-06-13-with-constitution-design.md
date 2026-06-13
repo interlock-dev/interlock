@@ -15,8 +15,7 @@ and the per-harness controller adapters — alongside the `interlock.yml` tier-g
 
 ```bash
 agent-interlock init                      # unchanged: writes interlock.yml + prints the workflow
-agent-interlock init --with-constitution  # ALSO lays down the constitution (solo by default)
-agent-interlock init --with-constitution --team   # team variant (keeps the human counter-sign gate)
+agent-interlock init --with-constitution  # ALSO lays down the constitution
 ```
 
 It is **deterministic and self-contained**: no LLM, no network, no dependency on the
@@ -49,11 +48,15 @@ one-line generic default the user may edit, and they never block the scaffold.
 
 ## CLI surface
 
-- New flags on `init`: `--with-constitution` (boolean), `--team` (boolean, default off →
-  solo), inherits the existing `--force`.
+- One new flag on `init`: `--with-constitution` (boolean), plus the existing `--force`.
 - `agent-interlock init --with-constitution` runs the normal `interlock.yml` write **and**
   the constitution scaffold, with the two kept in sync (see *Germline sync*).
 - Exit codes unchanged: `0` success, `2` config/safety error (e.g. refusing to overwrite).
+- **Single-owner governance only.** There is no team mode. The constitution always ships in
+  its single-sovereign form: Tier 1 merges on green CI + both review agents clean (no human
+  counter-sign), Tier 2 is the owner's call. "One owner gives the green light" is the whole
+  model — which removes a whole class of CODEOWNERS-membership and variant-template
+  complexity.
 
 ## What it writes
 
@@ -114,23 +117,16 @@ The template carries 14 placeholders. Sources:
 Interlock-style "bundle reproducible" step is omitted — that's Interlock-repo-specific), job
 name `checks` so it matches `{{CI_CHECK_NAME}}` and the SETUP branch-protection instructions.
 
-## Solo vs team (the only behavioural variant)
+## Single-owner governance (no variant logic)
 
-Four template locations differ between solo and team (the Tier-1 merge rule in
-`CONSTITUTION.md` Article III, `loop-policy.md` §2, `master-loop.md`'s merge table, and the
-field guide's tier table). Rather than regex-edit prose at runtime, the template gains a
-small set of **variant placeholders** at exactly those points (e.g.
-`{{TIER1_MERGE_RULE}}`), filled from a solo/team table:
+There is no solo/team switch, so there are **no variant placeholders and no runtime
+prose-editing**. The vendored template is the single-owner form outright: the Tier-1
+human-counter-sign clause is already waived in the prose, and `.github/CODEOWNERS` lists the
+one detected owner. This is the model the user wants — a single owner's green light merges a
+PR — and it deletes the entire class of CODEOWNERS-membership and template-variant work.
 
-- **Solo (default):** Tier-1 merges on green CI + both review agents clean; the human
-  counter-sign is "waived by the solo sovereign at genesis, reinstatable by amendment."
-  `.github/CODEOWNERS` lists the single detected owner.
-- **`--team`:** Tier-1 keeps "green CI + dual review + one CODEOWNERS approval";
-  `.github/CODEOWNERS` lists the detected owner **plus an editable marker** to add the
-  required second owner (the CLI can only know one from `git`; it flags the rest).
-
-This is a small, clean enhancement to the template (an explicit switch beats prose-editing)
-and is part of this feature's work.
+(If a team mode is ever wanted, it returns as a separate amendment; the agentic
+`/constitution-init` still offers it for repos that need it.)
 
 ## Germline sync (the dogfood invariant)
 
@@ -192,13 +188,14 @@ Mirrors the existing `init.ts` (pure functions + a thin fs runner):
 - **Partial pre-existing files** (e.g. an `AGENTS.md` already present): `--force` overwrites;
   without it, refuse and name the conflict.
 
+(There is no `--team` path, so no co-owner-discovery error case.)
+
 ## Testing
 
 - `detectStack`: npm (full scripts / partial / none), uv, neither → correct command sets.
 - `parseRemote`: `https://github.com/o/r.git`, `git@github.com:o/r.git`, no-`.git`, no remote.
 - `fillPlaceholders`: every one of the 14 placeholders + the variant placeholders replaced;
   **invariant test**: no `{{` survives in any rendered template.
-- Solo vs team: the Tier-1 rule and CODEOWNERS differ correctly between the two.
 - Germline sync: `interlock.yml` `tier2` set == `loop-policy.md` domain globs (same source).
 - Embed: the generated module contains every vendored template file, non-empty.
 - Integration: scaffold into a temp git repo → assert every expected path exists, `status:
@@ -207,15 +204,16 @@ Mirrors the existing `init.ts` (pure functions + a thin fs runner):
 ## Scope
 
 **In (v1 of the flag):**
-- `--with-constitution` + `--solo`(default)/`--team`, deterministic scaffold, stack-aware CI,
+- `--with-constitution` (single-owner only), deterministic scaffold, stack-aware CI,
   germline sync, embedded templates, setup-checklist output.
 
 **Out (deferred):**
+- Any team / multi-owner mode (single-owner is the model; team returns only as a future
+  amendment or via the agentic `/constitution-init`).
 - `--pr` (open the genesis via `gh`), label creation, branch-protection toggle, journal-issue
   creation — all printed as the checklist instead.
 - LLM-grade adaptation of the prose fields (that's what the agentic `/constitution-init` is
   for; this is the no-LLM packaged path).
-- Multi-owner CODEOWNERS discovery for `--team` (writes one + a marker).
 - The optional event-driven pacemaker workflow (explicitly excluded, as in the skill).
 
 ## Done criterion
